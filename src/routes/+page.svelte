@@ -2,20 +2,18 @@
   <title>Guardian</title>
   <meta
     name="description"
-    content="Guardian captures your day, turns it into structured memory, and becomes an AI advisor grounded in what actually happened."
+    content="Guardian memorizes your screen, your conversations, and the world around you, then acts on it before you have to ask."
   />
 </svelte:head>
 
 <section class="mb-16 mt-4">
   <div>
-    <p class="label-chip m-0" style="color: #999">Personal memory for AI</p>
-    <h1 class="m-0 mt-4 font-[var(--font-serif)] italic" style="font-weight: 300">
-      What if your AI actually knew you?
+    <h1 class="m-0 font-[var(--font-serif)] italic" style="font-weight: 300">
+      The assistant that understands you.
     </h1>
     <p class="mb-0 mt-4 max-w-[56ch] text-base leading-6" style="color: var(--color-text)">
-      Every assistant today starts from zero. You repeat context, lose continuity between sessions,
-      and ask advice from a system that never saw the meeting, the work, or the tradeoff that led
-      to it. Guardian turns the texture of your day into memory an advisor can actually use.
+      Guardian memorizes your screen, your conversations, and the world around you, then acts on
+      it before you have to ask.
     </p>
   </div>
 </section>
@@ -51,17 +49,24 @@
 <section class="mb-16">
   <h2 class="section-rule mb-6 mt-0">A sample day</h2>
 
+  <p class="mt-0 mb-6 text-[15px] leading-7" style="color: rgba(26, 26, 26, 0.65)">
+    Sunday. A late night rolls into a slow morning, an airport pickup, a long drive with good
+    conversation, and an honest evening with a friend. No agenda. Guardian captured all of it.
+  </p>
+
   <div class="surface-card px-5">
     <div class="repo-divider py-5 first:pt-0">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">09:14</span>
+        <span class="score-chip shrink-0 sm:mt-0.5">00:30</span>
         <div>
           <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Deep work on the pitch deck, with Figma, notes, and investor prep docs open across the
-            desktop.
+            Still at a 24-hour cafe from the night before. A conversation about Proust turns
+            into a debate about whether recording your life changes how you live it. Someone
+            asks about the app. Jackie says the data is thin but imagine a super intelligent
+            AI analyzing every interaction you have.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Desktop capture · 2h 14m
+            Ambient recorder + GoPro · Corgi Cafe, San Francisco
           </p>
         </div>
       </div>
@@ -69,14 +74,15 @@
 
     <div class="repo-divider py-5">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">11:30</span>
+        <span class="score-chip shrink-0 sm:mt-0.5">09:00</span>
         <div>
           <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Coffee with Sarah covered the Series A timeline, burn concerns, and an introduction to
-            David at Lux.
+            Morning at home. Beatles White Album playing. Casual exchanges about the neighbor,
+            an ice machine, and whether anyone wants to drive to San Jose. Guardian identifies
+            the music as media, not conversation.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Wearable audio + video · 48m · Hayes Valley
+            Ambient recorder · 347 Dolores St, San Francisco
           </p>
         </div>
       </div>
@@ -84,13 +90,16 @@
 
     <div class="repo-divider py-5">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">13:45</span>
+        <span class="score-chip shrink-0 sm:mt-0.5">13:00</span>
         <div>
           <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Team standup surfaced a firmware blocker and moved the demo from Wednesday to Thursday.
+            Airport pickup at SFO Terminal 3. Kendrick Lamar playing on the drive over.
+            Jackie calls from the ground floor: &ldquo;Hi, I&rsquo;m at terminal three,
+            door one.&rdquo; The drive back becomes two hours of conversation about movies,
+            memory, and what Proust actually meant.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Desktop audio + screen · 22m
+            Ambient recorder + GPS · SFO &rarr; San Francisco
           </p>
         </div>
       </div>
@@ -98,24 +107,41 @@
 
     <div class="repo-divider py-5">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">16:20</span>
+        <span class="score-chip shrink-0 sm:mt-0.5">16:30</span>
         <div>
           <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Reading session on diffusion policy for manipulation, annotated across three papers and
-            one draft memo.
+            An honest conversation with Paul. Velvet Underground playing. Jackie says
+            &ldquo;I can&rsquo;t do the cheering. I&rsquo;m just not a cheering person.
+            This is not who I am.&rdquo; Paul pushes back. Neither of them drops it.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Desktop capture · 1h 40m
+            GoPro bodycam · 37.771, -122.418 · San Francisco
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="repo-divider py-5">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
+        <span class="score-chip shrink-0 sm:mt-0.5">18:30</span>
+        <div>
+          <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
+            Taco Bell run in Hayes Valley. The conversation is lighter now. They talk about
+            people they know, who&rsquo;s cute, who&rsquo;s serious, what to do this week.
+          </p>
+          <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
+            GoPro · 37.777, -122.428 · Hayes Valley, SF
           </p>
         </div>
       </div>
     </div>
 
     <div class="repo-divider py-5 last:pb-0">
-      <p class="label-chip mb-2 mt-0" style="color: #999">System note</p>
+      <p class="label-chip mb-2 mt-0" style="color: #999">Guardian</p>
       <p class="m-0 text-[15px] italic leading-7" style="color: var(--color-text)">
-        Sarah promised an investor introduction, but her burn-rate concern never made it into your
-        follow-up notes. Guardian would connect both before the intro happens.
+        At 1 AM you told someone that recording your life might change how you live it.
+        At 4:30 PM you told Paul you can&rsquo;t be someone you&rsquo;re not. You said
+        both things like they were separate thoughts. They aren&rsquo;t.
       </p>
     </div>
   </div>
@@ -151,26 +177,6 @@
   </div>
 </section>
 
-<section id="why" class="mb-16">
-  <h2 class="section-rule mb-6 mt-0">Why this matters</h2>
-
-  <div class="max-w-[58ch]">
-    <p class="mt-0 text-base leading-7" style="color: rgba(26, 26, 26, 0.7)">
-      Today&rsquo;s assistants are fluent, but they are fundamentally amnesiac. They do not know who
-      you met on Tuesday, what you committed to on Thursday, or which decision quietly changed the
-      shape of the next month.
-    </p>
-    <p class="text-base leading-7" style="color: rgba(26, 26, 26, 0.7)">
-      Guardian captures experience across devices, reconciles it into evidence-backed memory, and
-      lets an advisor reason from what actually happened instead of whatever you happened to type
-      into a prompt.
-    </p>
-    <p class="mb-0 text-base leading-7" style="color: var(--color-text)">
-      The result is not better chat. It is continuity, judgment, and context that compounds over
-      time.
-    </p>
-  </div>
-</section>
 
 <section class="mb-16">
   <h2 class="section-rule mb-6 mt-0">The moat</h2>

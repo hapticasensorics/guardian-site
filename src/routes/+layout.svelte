@@ -1,5 +1,6 @@
 <script lang="ts">
   import '../app.css';
+  import FontPicker from '$lib/components/FontPicker.svelte';
   import type { Snippet } from 'svelte';
 
   let { children }: { children: Snippet } = $props();
@@ -17,7 +18,7 @@
 
     <nav class="label-chip flex items-center gap-5" style="color: #999">
       <a class="border-none hover:opacity-100" style="color: inherit" href="#how">How it works</a>
-      <a class="border-none hover:opacity-100" style="color: inherit" href="#why">Why it matters</a>
+
       <a class="border-none hover:opacity-100" style="color: inherit" href="#contact">Contact</a>
     </nav>
   </header>
@@ -35,3 +36,5 @@
     <span>Open source</span>
   </footer>
 </div>
+
+<FontPicker />
