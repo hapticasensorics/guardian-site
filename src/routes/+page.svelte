@@ -1,3 +1,7 @@
+<script lang="ts">
+  import ChatDemo from '$lib/components/ChatDemo.svelte';
+</script>
+
 <svelte:head>
   <title>Guardian</title>
   <meta
@@ -11,10 +15,12 @@
     <h1 class="m-0 font-[var(--font-serif)] italic" style="font-weight: 300">
       The assistant that understands you.
     </h1>
-    <p class="mb-0 mt-4 max-w-[56ch] text-base leading-6" style="color: var(--color-text)">
+    <p class="mb-8 mt-4 max-w-[56ch] text-base leading-6" style="color: var(--color-text)">
       Guardian memorizes your screen, your conversations, and the world around you, then acts on
       it before you have to ask.
     </p>
+
+    <ChatDemo />
   </div>
 </section>
 
