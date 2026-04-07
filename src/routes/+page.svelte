@@ -22,11 +22,10 @@
 
     <div class="mb-10 text-center">
       <a
-        href="https://forms.gle/8j8zrrMEvxpmG7gb6"
+        href="https://forms.gle/b1nX4idziZR7RegC9"
         target="_blank"
-        rel="noopener noreferrer"
-        class="label-chip inline-flex items-center border border-[var(--color-text)] px-6 py-3 text-[15px] no-underline"
-        style="color: var(--color-surface); background: var(--color-text)"
+        rel="noreferrer"
+        class="cta-link label-chip inline-flex items-center border border-[var(--color-text)] px-6 py-3 text-[15px] no-underline"
       >
         Join the waitlist
       </a>
@@ -143,11 +142,10 @@
   <div class="surface-card text-center">
     <p class="mb-4 mt-0">
       <a
-        href="https://forms.gle/8j8zrrMEvxpmG7gb6"
+        href="https://forms.gle/b1nX4idziZR7RegC9"
         target="_blank"
-        rel="noopener noreferrer"
-        class="label-chip inline-flex items-center border border-[var(--color-text)] px-6 py-3 no-underline"
-        style="color: var(--color-surface); background: var(--color-text)"
+        rel="noreferrer"
+        class="cta-link label-chip inline-flex items-center border border-[var(--color-text)] px-6 py-3 no-underline"
       >
         Join the waitlist
       </a>
