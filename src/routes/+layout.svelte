@@ -9,9 +9,10 @@
   <header class="mb-14 flex items-center justify-between border-b border-[var(--color-border)] pb-4 pt-2">
     <a
       href="/"
-      class="border-none font-[var(--font-serif)] text-[22px] italic leading-tight"
+      class="flex items-center gap-2.5 border-none font-[var(--font-serif)] text-[22px] italic leading-tight"
       style="font-weight: 300; color: var(--color-text)"
     >
+      <img src="/owl-logo.png" alt="Guardian owl" class="h-10 w-10" />
       Guardian
     </a>
 
