@@ -1,6 +1,5 @@
 <script lang="ts">
   import '../app.css';
-  import FontPicker from '$lib/components/FontPicker.svelte';
   import type { Snippet } from 'svelte';
 
   let { children }: { children: Snippet } = $props();
@@ -17,8 +16,6 @@
     </a>
 
     <nav class="label-chip flex items-center gap-5" style="color: #999">
-      <a class="border-none hover:opacity-100" style="color: inherit" href="#how">How it works</a>
-
       <a class="border-none hover:opacity-100" style="color: inherit" href="#contact">Contact</a>
     </nav>
   </header>
@@ -32,9 +29,6 @@
     style="color: #999; font-family: var(--font-sans)"
   >
     <span>Built by <a href="https://haptica.ai" class="border-none" style="color: inherit">Haptica</a></span>
-    <span class="mx-2">·</span>
-    <span>Open source</span>
   </footer>
 </div>
 
-<FontPicker />

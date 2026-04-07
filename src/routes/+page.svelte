@@ -20,35 +20,19 @@
       it before you have to ask.
     </p>
 
+    <div class="mb-10 text-center">
+      <a
+        href="https://forms.gle/8j8zrrMEvxpmG7gb6"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="label-chip inline-flex items-center border border-[var(--color-text)] px-6 py-3 text-[15px] no-underline"
+        style="color: var(--color-surface); background: var(--color-text)"
+      >
+        Join the waitlist
+      </a>
+    </div>
+
     <ChatDemo />
-  </div>
-</section>
-
-<section id="how" class="mb-16">
-  <h2 class="section-rule mb-8 mt-0">How it works</h2>
-
-  <div class="grid gap-8 md:grid-cols-3">
-    <div class="text-center">
-      <p class="label-chip mb-2 mt-0">Capture</p>
-      <p class="m-0 text-[15px] leading-6" style="color: rgba(26, 26, 26, 0.65)">
-        Wearables, desktop, and phone activity create a continuous record of what you saw, said,
-        and worked on.
-      </p>
-    </div>
-    <div class="text-center">
-      <p class="label-chip mb-2 mt-0">Understand</p>
-      <p class="m-0 text-[15px] leading-6" style="color: rgba(26, 26, 26, 0.65)">
-        Raw streams become structured memory: people, commitments, locations, documents, and the
-        decisions hidden inside them.
-      </p>
-    </div>
-    <div class="text-center">
-      <p class="label-chip mb-2 mt-0">Advise</p>
-      <p class="m-0 text-[15px] leading-6" style="color: rgba(26, 26, 26, 0.65)">
-        Instead of waiting for a query, Guardian notices patterns, flags risks, and reminds you
-        about what matters before it slips.
-      </p>
-    </div>
   </div>
 </section>
 
@@ -72,7 +56,7 @@
             AI analyzing every interaction you have.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Ambient recorder + GoPro · Corgi Cafe, San Francisco
+            Corgi Cafe, San Francisco
           </p>
         </div>
       </div>
@@ -88,7 +72,7 @@
             the music as media, not conversation.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Ambient recorder · 347 Dolores St, San Francisco
+            347 Dolores St, San Francisco
           </p>
         </div>
       </div>
@@ -105,7 +89,7 @@
             memory, and what Proust actually meant.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Ambient recorder + GPS · SFO &rarr; San Francisco
+            SFO &rarr; San Francisco
           </p>
         </div>
       </div>
@@ -121,7 +105,7 @@
             This is not who I am.&rdquo; Paul pushes back. Neither of them drops it.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            GoPro bodycam · 37.771, -122.418 · San Francisco
+            San Francisco
           </p>
         </div>
       </div>
@@ -136,7 +120,7 @@
             people they know, who&rsquo;s cute, who&rsquo;s serious, what to do this week.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            GoPro · 37.777, -122.428 · Hayes Valley, SF
+            Hayes Valley, SF
           </p>
         </div>
       </div>
@@ -153,90 +137,28 @@
   </div>
 </section>
 
-<section class="mb-16">
-  <h2 class="section-rule mb-6 mt-0">Proactive advisor</h2>
-
-  <div class="flex flex-col gap-4">
-    <div class="surface-card px-6 py-5">
-      <p class="label-chip mb-3 mt-0" style="color: #999">Example 01</p>
-      <p class="m-0 text-[15px] italic leading-7" style="color: var(--color-text)">
-        &ldquo;You have described the same hiring problem to three different people this week. None
-        of them knows about the others&rsquo; suggestions.&rdquo;
-      </p>
-    </div>
-
-    <div class="surface-card px-6 py-5">
-      <p class="label-chip mb-3 mt-0" style="color: #999">Example 02</p>
-      <p class="m-0 text-[15px] italic leading-7" style="color: var(--color-text)">
-        &ldquo;Last Tuesday you decided to cut the hardware timeline by two weeks, but the firmware
-        team still has the old date in their notes.&rdquo;
-      </p>
-    </div>
-
-    <div class="surface-card px-6 py-5">
-      <p class="label-chip mb-3 mt-0" style="color: #999">Example 03</p>
-      <p class="m-0 text-[15px] italic leading-7" style="color: var(--color-text)">
-        &ldquo;You have been in uninterrupted focus for five hours. The last time that happened, you
-        nearly missed the investor call on your calendar.&rdquo;
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<section class="mb-16">
-  <h2 class="section-rule mb-6 mt-0">The moat</h2>
-
-  <div class="grid gap-px border border-[var(--color-border)] md:grid-cols-2">
-    <div class="bg-[var(--color-surface)] p-6">
-      <p class="label-chip mb-2 mt-0">Data that cannot be backfilled</p>
-      <p class="m-0 text-[15px] leading-6" style="color: rgba(26, 26, 26, 0.65)">
-        Six months of lived context does not exist anywhere else. Every additional day makes the
-        system harder to replace.
-      </p>
-    </div>
-
-    <div class="border-t border-[var(--color-border)] bg-[var(--color-surface)] p-6 md:border-l md:border-t-0">
-      <p class="label-chip mb-2 mt-0">Personalization that compounds</p>
-      <p class="m-0 text-[15px] leading-6" style="color: rgba(26, 26, 26, 0.65)">
-        Guardian learns your patterns, preferences, and tradeoffs from repeated evidence, not one
-        onboarding questionnaire.
-      </p>
-    </div>
-
-    <div class="border-t border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-      <p class="label-chip mb-2 mt-0">Multi-device corroboration</p>
-      <p class="m-0 text-[15px] leading-6" style="color: rgba(26, 26, 26, 0.65)">
-        Desktop, wearable, and phone inputs reinforce each other so memory is grounded in multiple
-        sources instead of one noisy stream.
-      </p>
-    </div>
-
-    <div class="border-t border-[var(--color-border)] bg-[var(--color-surface)] p-6 md:border-l">
-      <p class="label-chip mb-2 mt-0">Privacy by architecture</p>
-      <p class="m-0 text-[15px] leading-6" style="color: rgba(26, 26, 26, 0.65)">
-        The durable asset is structured meaning, not raw recordings. What compounds is memory, not
-        a permanent archive of your life.
-      </p>
-    </div>
-  </div>
-</section>
-
 <section id="contact" class="mb-8">
   <h2 class="section-rule mb-6 mt-0">Contact</h2>
 
   <div class="surface-card text-center">
-    <p class="mx-auto mt-0 max-w-[48ch] text-base leading-7" style="color: rgba(26, 26, 26, 0.7)">
-      Guardian is being built for people who want an advisor with memory, continuity, and real
-      context. If you want to see it early, get in touch.
-    </p>
-    <p class="mb-0 mt-8">
+    <p class="mb-4 mt-0">
       <a
-        href="mailto:jackie@haptica.ai"
+        href="https://forms.gle/8j8zrrMEvxpmG7gb6"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="label-chip inline-flex items-center border border-[var(--color-text)] px-6 py-3 no-underline"
+        style="color: var(--color-surface); background: var(--color-text)"
+      >
+        Join the waitlist
+      </a>
+    </p>
+    <p class="mb-0 mt-4">
+      <a
+        href="mailto:contact@haptica.ai"
         class="label-chip inline-flex items-center border border-[var(--color-text)] px-4 py-3 no-underline"
         style="color: var(--color-text)"
       >
-        jackie@haptica.ai
+        contact@haptica.ai
       </a>
     </p>
   </div>
