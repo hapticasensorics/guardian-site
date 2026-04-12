@@ -596,13 +596,10 @@
             <img src="owl-logo.png" alt="Guardian owl" style="width: 48px; height: 48px; object-fit: contain;">
             <span class="logo-text">Guardian</span>
           </div>
-        <h1>Haptica: The world's<br><span class="highlight">robotics data</span></h1>
-          <p style="font-size: 20px; color: var(--gray); line-height: 1.6; margin-top: 16px; max-width: 480px;">Curated. Benchmarked. Delivered.</p>
-          <div class="website">www.haptica.ai</div>
+        <h1>Guardian: Live the<br>Examined Life</h1>
+          <p style="font-size: 20px; color: var(--gray); line-height: 1.6; margin-top: 16px; max-width: 480px;">The AI that knows who you are, what you do, and how you live.</p>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 16px; justify-content: center;">
-          <img src="v1/images/haptica-demo-reel.gif" alt="Haptica demo reel — capture studio, skeleton tracking, 3D MANO reconstruction" style="max-width: 100%; max-height: 480px; border: 1px solid var(--border); object-fit: cover;">
-        </div>
+        <div></div>
       </div>
       <div class="slide-footer">
         <img src="owl-logo.png" alt="Guardian owl" style="width: 24px; height: 24px; object-fit: contain;">
@@ -614,11 +611,11 @@
     <!-- Slide 2: Physical AI is the next frontier -->
     <div class="slide" data-slide="2">
       <div class="center-content">
-        <h2 style="font-size: 54px; margin-bottom: 30px; max-width: 1100px;">Physical AI is the <span class="highlight">next frontier</span></h2>
+        <h2 style="font-size: 54px; margin-bottom: 30px; max-width: 1100px;">AI assistants have a problem</h2>
         <ul class="bullet-list" style="max-width: 1000px;">
-          <li>Just as LLMs, image, and video models required huge amounts of data, so do physical robot models</li>
-          <li>Physical AI data can't be scraped. It must be collected, one interaction at a time, in the real world</li>
-          <li>The hardware is there, the compute is there, data scarcity is the bottleneck</li>
+          <li><strong>They forget what you tell them.</strong> Preferences, routines, past decisions. You have to re-explain yourself every conversation.</li>
+          <li><strong>They have limited context.</strong> AIs are limited to what they can read in a single session. You have to manually remind and update them.</li>
+          <li><strong>They only know what you relay to them.</strong> They can't observe your life, so their insight is limited to what you think to type.</li>
         </ul>
       </div>
       <div class="slide-footer">
@@ -628,45 +625,33 @@
       <div class="slide-number"><span>02</span> / 15</div>
     </div>
 
-    <!-- Slide 3: VLA Training Data Scale-Up -->
+    <!-- Slide 3: The Missing Layer -->
     <div class="slide" data-slide="3">
-      <div class="chart-container">
-        <div class="chart-title">VLA Training Data Scale-Up</div>
-        <div class="chart-subtitle">From ~1,000 hours to 270,000 hours in 3 years</div>
-        <div style="position: absolute; left: -10px; top: 50%; transform: rotate(-90deg) translateX(-50%); transform-origin: 0 0; font-family: 'Fira Mono', monospace; font-size: 12px; color: var(--gray); letter-spacing: 0.1em; white-space: nowrap;">HOURS OF PRETRAINING FOOTAGE</div>
-        <div class="y-axis">
-          <span>300K</span>
-          <span>250K</span>
-          <span>200K</span>
-          <span>150K</span>
-          <span>100K</span>
-          <span>50K</span>
-          <span>0</span>
-        </div>
-        <div class="scale-label">270x<br>scale-up</div>
-        <div class="bar-chart">
-          <div class="bar-group">
-            <div class="bar" style="height: 3px;"></div>
-            <div class="bar-label"><strong>RT-1</strong><span style="display: block; color: var(--teal); font-size: 13px;">Google DeepMind</span>2022</div>
+      <div style="padding: 80px; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+        <h2 style="font-size: 54px; margin-bottom: 60px;">The missing layer: a dynamic memory of your life</h2>
+        <div style="display: flex; flex-direction: column; gap: 36px;">
+          <div style="display: flex; gap: 20px; align-items: first baseline;">
+            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">01</span>
+            <div>
+              <h4 style="font-size: 22px; font-weight: 500; margin-bottom: 8px;">Passive physical memory</h4>
+              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">Always-on microphone and camera for real-world grounding. Conversations, environments, the life you live away from a screen.</p>
+            </div>
           </div>
-          <div class="bar-group">
-            <div class="bar" style="height: 3px;"></div>
-            <div class="bar-label"><strong>Octo</strong><span style="display: block; color: var(--teal); font-size: 13px;">UC Berkeley</span>2024</div>
+          <div style="display: flex; gap: 20px; align-items: first baseline;">
+            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">02</span>
+            <div>
+              <h4 style="font-size: 22px; font-weight: 500; margin-bottom: 8px;">Passive digital memory</h4>
+              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">Phone and desktop screen capture, digested through OCR. Everything you read, write, browse, and build.</p>
+            </div>
           </div>
-          <div class="bar-group">
-            <div class="bar" style="height: 4px;"></div>
-            <div class="bar-label"><strong>OpenVLA</strong><span style="display: block; color: var(--teal); font-size: 13px;">Stanford / Berkeley</span>2024</div>
-          </div>
-          <div class="bar-group">
-            <div class="bar" style="height: 14px;"></div>
-            <div class="bar-label"><strong>π0</strong><span style="display: block; color: var(--teal); font-size: 13px;">Physical Intelligence</span>2024</div>
-          </div>
-          <div class="bar-group">
-            <div class="bar" style="height: 380px;"></div>
-            <div class="bar-label"><strong>GEN-0</strong><span style="display: block; color: var(--teal); font-size: 13px;">Generalist AI</span><span style="display: block; font-style: italic; color: var(--gray); font-size: 13px;">+10K hrs/week</span>2025</div>
+          <div style="display: flex; gap: 20px; align-items: first baseline;">
+            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">03</span>
+            <div>
+              <h4 style="font-size: 22px; font-weight: 500; margin-bottom: 8px;">Synthesis</h4>
+              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">All data is processed and cross-referenced into a dynamic memory that stretches your entire life.</p>
+            </div>
           </div>
         </div>
-        <div class="chart-note" style="font-size: 16px; font-weight: 500; color: var(--teal); opacity: 1;">All current VLAs: vision-only, zero tactile data</div>
       </div>
       <div class="slide-footer">
         <img src="owl-logo.png" alt="Guardian owl" style="width: 24px; height: 24px; object-fit: contain;">
@@ -675,30 +660,30 @@
       <div class="slide-number"><span>03</span> / 15</div>
     </div>
 
-    <!-- Slide 4: No scalable solution -->
+    <!-- Slide 4: Value Proposition -->
     <div class="slide" data-slide="4">
       <div style="padding: 80px; height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <h2 style="font-size: 54px; margin-bottom: 60px;">Robotics data has a <span class="highlight">signal-to-noise problem</span></h2>
+        <h2 style="font-size: 54px; margin-bottom: 60px;">The first system of record for your life</h2>
         <div style="display: flex; flex-direction: column; gap: 36px;">
           <div style="display: flex; gap: 20px; align-items: first baseline;">
-            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--teal); flex-shrink: 0;">01</span>
+            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">01</span>
             <div>
-              <h4 style="font-size: 22px; font-weight: 500; margin-bottom: 8px;">Fragmented</h4>
-              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">Some proprietary, some open-source, some locked in B2B contracts. None of it connected</p>
+              <h4 style="font-size: 22px; font-weight: 500; margin-bottom: 8px;">Remembers what happened</h4>
+              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">Across the room, your phone, and your laptop. Nothing falls through the cracks.</p>
             </div>
           </div>
           <div style="display: flex; gap: 20px; align-items: first baseline;">
-            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--teal); flex-shrink: 0;">02</span>
+            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">02</span>
             <div>
-              <h4 style="font-size: 22px; font-weight: 500; margin-bottom: 8px;">Data quality is hard to evaluate</h4>
-              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">You can't tell if a dataset will work until you've spent the compute</p>
+              <h4 style="font-size: 22px; font-weight: 500; margin-bottom: 8px;">Builds a living model of you</h4>
+              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">How you spend your time, attention, and relationships.</p>
             </div>
           </div>
           <div style="display: flex; gap: 20px; align-items: first baseline;">
-            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--teal); flex-shrink: 0;">03</span>
+            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">03</span>
             <div>
-              <h4 style="font-size: 22px; font-weight: 500; margin-bottom: 8px;">Lack of standards</h4>
-              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">No centralizing force. Formats, modalities, labels, and quality metrics vary across every source</p>
+              <h4 style="font-size: 22px; font-weight: 500; margin-bottom: 8px;">Turns lived context into action</h4>
+              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">Better recall, better judgment, better next actions.</p>
             </div>
           </div>
         </div>
@@ -710,28 +695,79 @@
       <div class="slide-number"><span>04</span> / 15</div>
     </div>
 
-    <!-- Slide 5: Our Solution -->
+    <!-- Slide 5: Product Demo -->
     <div class="slide" data-slide="5">
-      <div style="display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 80px 80px 60px;">
-        <h2 style="font-size: 54px; margin-bottom: 12px;">Our Solution: <span class="highlight">Provenance</span></h2>
-        <p style="font-size: 18px; color: var(--light-gray); line-height: 1.6; margin-bottom: 48px;">The platform where robotics companies find, evaluate, and purchase the exact training data their models need.</p>
-        <div style="display: flex; flex-direction: column; gap: 20px;">
-          <div style="padding: 20px 28px; border-left: 3px solid var(--teal);">
-            <h4 style="font-size: 16px; font-weight: 500; margin-bottom: 6px;">Provenance</h4>
-            <p style="font-size: 16px; color: var(--gray); line-height: 1.5;">Aggregates robotics data from multiple sources. Customers find, evaluate, and purchase through one platform.</p>
+      <div style="display: flex; flex-direction: column; height: 100%; padding: 50px 70px 40px;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 28px;">
+          <div>
+            <h2 style="font-size: 42px; margin-bottom: 4px;">This is one week with Guardian.</h2>
           </div>
-          <div style="padding: 20px 28px; border-left: 3px solid var(--teal);">
-            <h4 style="font-size: 16px; font-weight: 500; margin-bottom: 6px;">Processing Pipeline</h4>
-            <p style="font-size: 16px; color: var(--gray); line-height: 1.5;">Proprietary stack that processes, labels, filters, and taxonomizes across modalities, tasks, and environments.</p>
+          <div style="font-family: 'Fira Mono', monospace; font-size: 12px; color: var(--gray); text-align: right;">
+            19,300 memories &middot; 4 sources &middot; mar 17&ndash;23
           </div>
-          <div style="padding: 20px 28px; border-left: 3px solid var(--teal);">
-            <h4 style="font-size: 16px; font-weight: 500; margin-bottom: 6px;">Dataset Library</h4>
-            <p style="font-size: 16px; color: var(--gray); line-height: 1.5;">Browse curated datasets or build your own. Filter by task, quality, modality, environment.</p>
+        </div>
+
+        <!-- Dashboard grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; flex: 1; min-height: 0;">
+
+          <!-- Card 1: Day Shape -->
+          <div style="background: #ffffff; border: 1px solid #f0f0ee; padding: 24px 28px; display: flex; flex-direction: column;">
+            <div style="font-family: 'Merriweather Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin-bottom: 16px;">When you're alive</div>
+            <div style="font-family: 'Fira Mono', monospace; font-size: 13px; line-height: 2; flex: 1;">
+              <div style="display: flex; align-items: center; gap: 10px;"><span style="color: #999; width: 20px;">M</span><span style="letter-spacing: 1px;"><span style="color: #e0e0e0;">░░░░░░░░░░</span><span style="color: #000;">██░██████████████</span><span style="color: #e0e0e0;">░░</span></span></div>
+              <div style="display: flex; align-items: center; gap: 10px;"><span style="color: #999; width: 20px;">T</span><span style="letter-spacing: 1px;"><span style="color: #e0e0e0;">░░░░░░░░░░░░░</span><span style="color: #000;">████████████████</span></span></div>
+              <div style="display: flex; align-items: center; gap: 10px;"><span style="color: #999; width: 20px;">W</span><span style="letter-spacing: 1px;"><span style="color: #e0e0e0;">░░</span><span style="color: #000;">██</span><span style="color: #e0e0e0;">░░░░░░░░░░</span><span style="color: #000;">████████████</span><span style="color: #e0e0e0;">░░░</span></span></div>
+              <div style="display: flex; align-items: center; gap: 10px;"><span style="color: #999; width: 20px;">T</span><span style="letter-spacing: 1px;"><span style="color: #e0e0e0;">░░░░░░░░░░░░</span><span style="color: #000;">████████████████</span><span style="color: #e0e0e0;">░</span></span></div>
+              <div style="display: flex; align-items: center; gap: 10px;"><span style="color: #999; width: 20px;">F</span><span style="letter-spacing: 1px;"><span style="color: #e0e0e0;">░░░░░░░░░░░░</span><span style="color: #000;">████████████████</span><span style="color: #e0e0e0;">░</span></span></div>
+              <div style="display: flex; align-items: center; gap: 10px;"><span style="color: #999; width: 20px;">S</span><span style="letter-spacing: 1px;"><span style="color: #e0e0e0;">░░░░░░░░░░░░░░</span><span style="color: #000;">████</span><span style="color: #e0e0e0;">░░░░░░░░░░░</span></span></div>
+              <div style="display: flex; align-items: center; gap: 10px;"><span style="color: #999; width: 20px;">S</span><span style="letter-spacing: 1px;"><span style="color: #e0e0e0;">░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</span></span></div>
+            </div>
+            <div style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; margin-top: 12px;">you peak at 10pm. dead before noon. every day.</div>
           </div>
-          <div style="padding: 20px 28px; border-left: 3px solid var(--teal);">
-            <h4 style="font-size: 16px; font-weight: 500; margin-bottom: 6px;">Quality Gate</h4>
-            <p style="font-size: 16px; color: var(--gray); line-height: 1.5;">Benchmark and evaluate dataset quality on the platform before purchasing.</p>
+
+          <!-- Card 2: Activity Breakdown -->
+          <div style="background: #ffffff; border: 1px solid #f0f0ee; padding: 24px 28px; display: flex; flex-direction: column;">
+            <div style="font-family: 'Merriweather Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin-bottom: 16px;">How you spend your time</div>
+            <div style="display: flex; flex-direction: column; gap: 12px; flex: 1;">
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 90px;">Deep work</span><div style="flex: 1; height: 18px; background: #f2f2f2;"><div style="width: 68%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">34%</span></div>
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 90px;">Social</span><div style="flex: 1; height: 18px; background: #f2f2f2;"><div style="width: 44%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">22%</span></div>
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 90px;">Transit</span><div style="flex: 1; height: 18px; background: #f2f2f2;"><div style="width: 22%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">11%</span></div>
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 90px;">Browsing</span><div style="flex: 1; height: 18px; background: #f2f2f2;"><div style="width: 18%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">9%</span></div>
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 90px;">Meetings</span><div style="flex: 1; height: 18px; background: #f2f2f2;"><div style="width: 14%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">7%</span></div>
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 90px;">Music</span><div style="flex: 1; height: 18px; background: #f2f2f2;"><div style="width: 12%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">6%</span></div>
+            </div>
+            <div style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; margin-top: 12px;">longest focus block: 4.2h deep work &middot; tuesday 8pm</div>
           </div>
+
+          <!-- Card 3: People -->
+          <div style="background: #ffffff; border: 1px solid #f0f0ee; padding: 24px 28px; display: flex; flex-direction: column;">
+            <div style="font-family: 'Merriweather Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin-bottom: 16px;">People &mdash; measured by voice, not contacts</div>
+            <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 80px;">Paul</span><div style="flex: 1; height: 14px; background: #f2f2f2;"><div style="width: 100%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">6 days</span></div>
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 80px;">Lindsay</span><div style="flex: 1; height: 14px; background: #f2f2f2;"><div style="width: 66%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">4 days</span></div>
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 80px;">Sita</span><div style="flex: 1; height: 14px; background: #f2f2f2;"><div style="width: 33%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">2 days</span></div>
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 80px;">Tiffany</span><div style="flex: 1; height: 14px; background: #f2f2f2;"><div style="width: 33%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">2 days</span></div>
+              <div style="display: flex; align-items: center; gap: 12px;"><span style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; width: 80px;">Benedict</span><div style="flex: 1; height: 14px; background: #f2f2f2;"><div style="width: 16%; height: 100%; background: #000;"></div></div><span style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; width: 50px; text-align: right;">1 day</span></div>
+            </div>
+            <div style="font-family: 'Fira Mono', monospace; font-size: 12px; color: #999; margin-top: 12px;">+2 new people this week. you talked to paul every day except wednesday.</div>
+          </div>
+
+          <!-- Card 4: Quote of the Week -->
+          <div style="background: #000; color: #fcfcfc; border: 1px solid #000; padding: 28px 32px; display: flex; flex-direction: column; justify-content: center;">
+            <div style="font-family: 'Merriweather Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px;">Quote of the week</div>
+            <p style="font-family: 'Merriweather', Georgia, serif; font-size: 22px; font-style: italic; font-weight: 300; line-height: 1.6; color: #fcfcfc; margin: 0 0 20px 0;">&ldquo;I think these people, because it&rsquo;s people paying $60 to go to a biohacking wellness thing, I think these are our early believers.&rdquo;</p>
+            <div style="font-family: 'Fira Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.5);">
+              wednesday, 1:47am<br>
+              recorder + desktop confirmed
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer stats -->
+        <div style="font-family: 'Fira Mono', monospace; font-size: 11px; color: #999; margin-top: 16px; text-align: center; letter-spacing: 0.03em;">
+          screen 44% &middot; voice 35% &middot; video 19% &middot; metadata 2%
         </div>
       </div>
       <div class="slide-footer">
