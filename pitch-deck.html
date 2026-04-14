@@ -597,13 +597,12 @@
           <span class="logo-text">Haptica</span>
         </div>
         <h1>Haptica: Live the<br>Examined Life</h1>
-        <p style="font-size: 20px; color: var(--gray); line-height: 1.6; margin-top: 16px; max-width: 560px;">The AI that knows who you are, what you do, and how you live.</p>
       </div>
       <div class="slide-footer">
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>01</span> / 16</div>
+      <div class="slide-number"><span>01</span> / 12</div>
     </div>
 
     <!-- Slide 2: AI assistants have a problem -->
@@ -620,7 +619,7 @@
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>02</span> / 16</div>
+      <div class="slide-number"><span>02</span> / 12</div>
     </div>
 
     <!-- Slide 3: Value Proposition -->
@@ -630,15 +629,15 @@
         <div style="display: flex; flex-direction: column; gap: 36px;">
           <div style="display: flex; gap: 20px; align-items: first baseline;">
             <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">01</span>
-            <p style="font-size: 26px; line-height: 1.6;">Remembers what happened across the room and your laptop. Nothing falls through the cracks.</p>
+            <p style="font-size: 26px; line-height: 1.6;">Remembers every decision, conversation, and thread across your work.</p>
           </div>
           <div style="display: flex; gap: 20px; align-items: first baseline;">
             <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">02</span>
-            <p style="font-size: 26px; line-height: 1.6;">Builds a living model of how you spend your time, attention, and relationships.</p>
+            <p style="font-size: 26px; line-height: 1.6;">Builds a living model of your projects, tools, commitments, and collaborators.</p>
           </div>
           <div style="display: flex; gap: 20px; align-items: first baseline;">
             <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">03</span>
-            <p style="font-size: 26px; line-height: 1.6;">Turns lived context into action. Better recall, better judgment, better next actions.</p>
+            <p style="font-size: 26px; line-height: 1.6;">Gives your AI tools the context they need to help.</p>
           </div>
         </div>
       </div>
@@ -646,29 +645,87 @@
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>03</span> / 16</div>
+      <div class="slide-number"><span>03</span> / 12</div>
     </div>
 
     <!-- Slide 4: How It Works -->
     <div class="slide" data-slide="4">
       <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
         <h2 style="font-size: 54px; margin-bottom: 60px;">How it works</h2>
-        <div style="display: flex; flex-direction: column; gap: 36px;">
-          <div style="display: flex; gap: 20px; align-items: first baseline;">
-            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">01</span>
-            <p style="font-size: 26px; line-height: 1.6;">Desktop agent captures your digital world. Screen capture via OCR. Every tab, terminal session, document, and chat.</p>
+
+        <!-- Flow diagram -->
+        <div style="display: flex; align-items: stretch; gap: 0; max-width: 1200px;">
+
+          <!-- Box 1: Your Screen -->
+          <div style="flex: 1; background: #000; color: #fcfcfc; padding: 40px 32px; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px;">Capture</div>
+            <h4 style="font-size: 28px; font-weight: 500; color: #fcfcfc; margin: 0 0 20px 0;">Your screen</h4>
+            <div style="font-family: var(--font-mono); font-size: 20px; color: rgba(255,255,255,0.5); line-height: 2;">
+              tabs<br>
+              terminal<br>
+              editor<br>
+              chat
+            </div>
           </div>
-          <div style="display: flex; gap: 20px; align-items: first baseline;">
-            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">02</span>
-            <p style="font-size: 26px; line-height: 1.6;">Context served to your AI tools via MCP. Claude, ChatGPT, Cursor, any MCP-compatible tool gets access to who you are and what you&rsquo;ve been working on.</p>
+
+          <!-- Arrow 1 -->
+          <div style="display: flex; align-items: center; padding: 0 16px; color: var(--gray); font-size: 36px;">&rarr;</div>
+
+          <!-- Box 2: Haptica Agent -->
+          <div style="flex: 1; background: var(--card); border: 1px solid var(--card-border); padding: 40px 32px; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 20px;">Process</div>
+            <h4 style="font-size: 28px; font-weight: 500; margin: 0 0 20px 0;">Haptica agent</h4>
+            <div style="font-family: var(--font-mono); font-size: 20px; color: var(--gray); line-height: 2;">
+              OCR<br>
+              chunking<br>
+              indexing<br>
+              synthesis
+            </div>
           </div>
+
+          <!-- Arrow 2 -->
+          <div style="display: flex; align-items: center; padding: 0 16px; color: var(--gray); font-size: 36px;">&rarr;</div>
+
+          <!-- Box 3: Structured Context -->
+          <div style="flex: 1; background: var(--card); border: 1px solid var(--card-border); padding: 40px 32px; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 20px;">Store</div>
+            <h4 style="font-size: 28px; font-weight: 500; margin: 0 0 20px 0;">Structured context</h4>
+            <div style="font-family: var(--font-mono); font-size: 20px; color: var(--gray); line-height: 2;">
+              timeline<br>
+              entities<br>
+              decisions<br>
+              patterns
+            </div>
+          </div>
+
+          <!-- Arrow 3 -->
+          <div style="display: flex; align-items: center; padding: 0 16px; color: var(--gray); font-size: 36px;">&rarr;</div>
+
+          <!-- Box 4: Your AI Tools -->
+          <div style="flex: 1; background: var(--card); border: 1px solid var(--card-border); padding: 40px 32px; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 20px;">Serve</div>
+            <h4 style="font-size: 28px; font-weight: 500; margin: 0 0 20px 0;">Your AI tools</h4>
+            <div style="font-family: var(--font-mono); font-size: 20px; color: var(--gray); line-height: 2;">
+              Claude<br>
+              Cursor<br>
+              ChatGPT<br>
+              <span style="color: var(--accent);">via MCP</span>
+            </div>
+          </div>
+
         </div>
+
+        <!-- Subline -->
+        <div style="font-family: var(--font-mono); font-size: 18px; color: var(--gray); margin-top: 40px;">
+          Runs locally. Your data stays on your machine. AI tools request context with your permission.
+        </div>
+
       </div>
       <div class="slide-footer">
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>04</span> / 16</div>
+      <div class="slide-number"><span>04</span> / 12</div>
     </div>
 
     <!-- Slide 5: Product Demo -->
@@ -750,7 +807,7 @@
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>05</span> / 16</div>
+      <div class="slide-number"><span>05</span> / 12</div>
     </div>
 
     <!-- Slide 6: Haptica Already Knows -->
@@ -817,7 +874,7 @@
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>06</span> / 16</div>
+      <div class="slide-number"><span>06</span> / 12</div>
     </div>
 
     <!-- Slide 7: Business Model -->
@@ -826,9 +883,9 @@
 
         <!-- Left: the number -->
         <div style="flex: 0 0 auto;">
-          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 16px;">Monthly subscription</div>
+          <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 16px;">Monthly subscription</div>
           <div style="font-family: var(--font-serif); font-size: 120px; font-weight: 300; line-height: 1; color: var(--black);">$49</div>
-          <div style="font-family: var(--font-mono); font-size: 14px; color: var(--gray); margin-top: 12px;">/month &middot; no free tier</div>
+          <div style="font-family: var(--font-mono); font-size: 18px; color: var(--gray); margin-top: 12px;">/month &middot; no free tier</div>
         </div>
 
         <!-- Right: what you get + why it works -->
@@ -838,22 +895,22 @@
           <!-- What's included -->
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="display: flex; gap: 16px; align-items: first baseline;">
-              <span style="font-family: var(--font-mono); font-size: 14px; color: var(--accent); flex-shrink: 0;">01</span>
-              <h4 style="font-size: 20px; font-weight: 500; margin: 0;">Desktop screen capture + OCR</h4>
+              <span style="font-family: var(--font-mono); font-size: 18px; color: var(--accent); flex-shrink: 0;">01</span>
+              <h4 style="font-size: 26px; font-weight: 500; margin: 0;">Desktop screen capture + OCR</h4>
             </div>
             <div style="display: flex; gap: 16px; align-items: first baseline;">
-              <span style="font-family: var(--font-mono); font-size: 14px; color: var(--accent); flex-shrink: 0;">02</span>
-              <h4 style="font-size: 20px; font-weight: 500; margin: 0;">AI memory + chat interface</h4>
+              <span style="font-family: var(--font-mono); font-size: 18px; color: var(--accent); flex-shrink: 0;">02</span>
+              <h4 style="font-size: 26px; font-weight: 500; margin: 0;">AI memory + chat interface</h4>
             </div>
             <div style="display: flex; gap: 16px; align-items: first baseline;">
-              <span style="font-family: var(--font-mono); font-size: 14px; color: var(--accent); flex-shrink: 0;">03</span>
-              <h4 style="font-size: 20px; font-weight: 500; margin: 0;">MCP context API for your AI tools</h4>
+              <span style="font-family: var(--font-mono); font-size: 18px; color: var(--accent); flex-shrink: 0;">03</span>
+              <h4 style="font-size: 26px; font-weight: 500; margin: 0;">MCP context API for your AI tools</h4>
             </div>
           </div>
 
           <!-- Retention -->
           <div style="border-top: 1px solid var(--border); padding-top: 24px;">
-            <p style="font-family: var(--font-mono); font-size: 16px; color: var(--gray); margin: 0;">Context compounds.</p>
+            <p style="font-family: var(--font-mono); font-size: 20px; color: var(--gray); margin: 0;">Context compounds.</p>
           </div>
 
         </div>
@@ -862,10 +919,10 @@
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>07</span> / 16</div>
+      <div class="slide-number"><span>07</span> / 12</div>
     </div>
 
-    <!-- Slide 8: Go-to-Market -->
+    <!-- Slide 9: Go-to-Market -->
     <div class="slide" data-slide="8">
       <div style="display: flex; flex-direction: column; height: 100%; justify-content: center;">
         <h2 style="font-size: 42px; margin-bottom: 48px;">Start with the people who feel this pain most.</h2>
@@ -894,7 +951,7 @@
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>08</span> / 16</div>
+      <div class="slide-number"><span>08</span> / 12</div>
     </div>
 
     <!-- Slide 9: Why Now -->
@@ -920,263 +977,11 @@
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>09</span> / 16</div>
+      <div class="slide-number"><span>09</span> / 12</div>
     </div>
 
-    <!-- Slide 10: The next 24 months -->
+    <!-- Slide 10: Core Team -->
     <div class="slide" data-slide="10">
-      <div class="left-content">
-        <h2 style="font-size: 54px;">The next 24 months</h2>
-        <div class="timeline">
-          <div class="timeline-col">
-            <h4>1H26</h4>
-            <h5>Contracted Collection</h5>
-            <p><em>Capture hardware deployed</em></p>
-            <p><em>First data collection contracts</em></p>
-            <p><em>Data delivered through Provenance</em></p>
-            <p><em>Processing pipeline live</em></p>
-          </div>
-          <div class="timeline-col">
-            <h4>2H26</h4>
-            <h5>Platform Goes Live</h5>
-            <p><em>Queryable datasets on Provenance</em></p>
-            <p><em>Open-source datasets onboarded and taxonomized</em></p>
-            <p><em>Quality Gate benchmarking live</em></p>
-            <p><em>First paying platform customers</em></p>
-          </div>
-          <div class="timeline-col">
-            <h4>2027</h4>
-            <h5>Operator Network</h5>
-            <p><em>Hardware leasing model active</em></p>
-            <p><em>Operators collecting and uploading</em></p>
-            <p><em>Platform tooling buildout</em></p>
-            <p><em>Multiple task domains covered</em></p>
-          </div>
-          <div class="timeline-col">
-            <h4>2028+</h4>
-            <h5>Industry Standard</h5>
-            <p><em>Large and mid-size companies on Provenance</em></p>
-            <p><em>Marketplace, data, and tooling adopted</em></p>
-            <p><em>Provenance becomes infrastructure</em></p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
-        Haptica
-      </div>
-      <div class="slide-number"><span>10</span> / 16</div>
-    </div>
-
-    <!-- Slide 11: Path to World Model -->
-    <div class="slide" data-slide="11">
-      <div class="left-content">
-        <h2>Bootstrapping <span class="highlight">Provenance</span></h2>
-        <p style="font-size: 18px; color: var(--gray); margin-bottom: 20px;">Revenue funds collection. Collection fills the warehouse. The warehouse drives demand.</p>
-        <div style="flex: 1; position: relative;">
-          <svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%;">
-            <defs>
-              <linearGradient id="fwCurveGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#000000" stop-opacity="0.3"/>
-                <stop offset="50%" stop-color="#000000" stop-opacity="0.6"/>
-                <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
-              </linearGradient>
-              <linearGradient id="fwAreaGrad" x1="0.05" y1="1" x2="0.95" y2="0">
-                <stop offset="0%" stop-color="#000000" stop-opacity="0.01"/>
-                <stop offset="40%" stop-color="#000000" stop-opacity="0.06"/>
-                <stop offset="65%" stop-color="#000000" stop-opacity="0.15"/>
-                <stop offset="85%" stop-color="#000000" stop-opacity="0.30"/>
-                <stop offset="100%" stop-color="#000000" stop-opacity="0.50"/>
-              </linearGradient>
-              <clipPath id="fwChartClip">
-                <rect x="100" y="40" width="1000" height="380"/>
-              </clipPath>
-            </defs>
-
-            <!-- Axes -->
-            <line x1="100" y1="420" x2="1100" y2="420" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
-            <line x1="100" y1="420" x2="100" y2="40" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
-
-            <!-- Y-axis label -->
-            <text transform="rotate(-90, 40, 230)" x="40" y="230" style="font-family: 'Fira Mono', monospace; font-size: 13px; fill: #cccccc; letter-spacing: 0.08em;">REVENUE</text>
-
-            <!-- X-axis label -->
-            <text x="600" y="475" text-anchor="middle" style="font-family: 'Fira Mono', monospace; font-size: 13px; fill: #cccccc; letter-spacing: 0.08em;">DATA SCALE &#x2192; PLATFORM VALUE</text>
-
-            <!-- X-axis milestones -->
-            <text x="180" y="445" text-anchor="middle" style="font-family: 'Fira Mono', monospace; font-size: 12px; fill: #888888;">1K hrs</text>
-            <text x="380" y="445" text-anchor="middle" style="font-family: 'Fira Mono', monospace; font-size: 12px; fill: #888888;">10K hrs</text>
-            <text x="620" y="445" text-anchor="middle" style="font-family: 'Fira Mono', monospace; font-size: 12px; fill: #888888;">100K hrs</text>
-            <text x="900" y="445" text-anchor="middle" style="font-family: 'Fira Mono', monospace; font-size: 12px; fill: #888888;">1M hrs</text>
-
-            <!-- Faint grid lines -->
-            <line x1="180" y1="420" x2="180" y2="50" stroke="rgba(0,0,0,0.1)" stroke-width="1" stroke-dasharray="4 5"/>
-            <line x1="380" y1="420" x2="380" y2="50" stroke="rgba(0,0,0,0.1)" stroke-width="1" stroke-dasharray="4 5"/>
-            <line x1="620" y1="420" x2="620" y2="50" stroke="rgba(0,0,0,0.1)" stroke-width="1" stroke-dasharray="4 5"/>
-            <line x1="900" y1="420" x2="900" y2="50" stroke="rgba(0,0,0,0.1)" stroke-width="1" stroke-dasharray="4 5"/>
-
-            <!-- Phase background bands -->
-            <rect x="100" y="40" width="280" height="380" fill="rgba(0,0,0,0.015)"/>
-            <rect x="380" y="40" width="240" height="380" fill="rgba(0,0,0,0.03)"/>
-            <rect x="620" y="40" width="480" height="380" fill="rgba(0,0,0,0.06)"/>
-
-            <!-- Clipped curve group -->
-            <g clip-path="url(#fwChartClip)">
-              <path d="M 120 410 Q 250 409, 380 406 Q 440 404, 500 399 Q 550 393, 600 384 Q 650 370, 700 350 Q 740 327, 780 295 Q 815 256, 850 204 Q 900 98, 950 -58 L 1100 -58 L 1100 420 L 120 420 Z" fill="url(#fwAreaGrad)"/>
-              <path d="M 120 410 Q 250 409, 380 406 Q 440 404, 500 399 Q 550 393, 600 384 Q 650 370, 700 350 Q 740 327, 780 295 Q 815 256, 850 204 Q 900 98, 950 -58" fill="none" stroke="url(#fwCurveGrad)" stroke-width="2.5"/>
-            </g>
-
-            <!-- Phase headers (rendered after curve so they appear on top) -->
-            <text x="280" y="70" text-anchor="middle" style="font-family: 'Fira Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; fill: #000000;">CONTRACTED COLLECTION</text>
-            <text x="280" y="88" text-anchor="middle" style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; fill: #888888;">Revenue funds collection</text>
-
-            <text x="500" y="70" text-anchor="middle" style="font-family: 'Fira Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; fill: #000000;">MARKETPLACE LIVE</text>
-            <text x="500" y="88" text-anchor="middle" style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; fill: #888888;">Platform becomes useful</text>
-
-            <text x="820" y="70" text-anchor="middle" style="font-family: 'Fira Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; fill: #000000;">INDUSTRY INFRASTRUCTURE</text>
-            <text x="820" y="88" text-anchor="middle" style="font-family: 'Merriweather Sans', sans-serif; font-size: 13px; fill: #888888;">Flywheel takes over</text>
-
-            <!-- Milestone dots on curve -->
-            <circle cx="180" cy="409" r="5" fill="#000000"/>
-            <circle cx="180" cy="409" r="10" fill="none" stroke="#000000" stroke-width="1.5" opacity="0.4"/>
-            <circle cx="380" cy="406" r="5" fill="#000000"/>
-            <circle cx="380" cy="406" r="10" fill="none" stroke="#000000" stroke-width="1.5" opacity="0.4"/>
-            <circle cx="620" cy="378" r="5" fill="#000000"/>
-            <circle cx="620" cy="378" r="10" fill="none" stroke="#000000" stroke-width="1.5" opacity="0.4"/>
-            <circle cx="900" cy="86" r="6" fill="#000000"/>
-            <circle cx="900" cy="86" r="12" fill="none" stroke="#000000" stroke-width="1.5" opacity="0.4"/>
-
-            <!-- Flywheel inflection marker at 100K hrs -->
-            <line x1="620" y1="420" x2="620" y2="44" stroke="#000000" stroke-width="1" opacity="0.25" stroke-dasharray="4 4"/>
-            <g transform="translate(620, 33)">
-              <rect x="-66" y="-9" width="132" height="20" fill="#ffffff" stroke="#000000" stroke-width="1"/>
-              <text x="0" y="4" text-anchor="middle" style="font-family: 'Fira Mono', monospace; font-size: 8px; letter-spacing: 0.08em; fill: #000000; font-weight: 600;">FLYWHEEL TAKES HOLD</text>
-            </g>
-
-            <!-- Revenue annotations -->
-            <text x="200" y="395" text-anchor="start" style="font-family: 'Fira Mono', monospace; font-size: 11px; fill: #888888;">$0.5-1M ARR</text>
-            <text x="400" y="392" text-anchor="start" style="font-family: 'Fira Mono', monospace; font-size: 11px; fill: #888888;">$5-15M ARR</text>
-            <text x="640" y="322" text-anchor="start" style="font-family: 'Fira Mono', monospace; font-size: 11px; fill: #888888;">$50-150M ARR</text>
-          </svg>
-        </div>
-      </div>
-      <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
-        Haptica
-      </div>
-      <div class="slide-number"><span>11</span> / 16</div>
-    </div>
-
-    <!-- Slide 12: How We Start -->
-    <div class="slide" data-slide="12">
-      <div style="display: flex; flex-direction: column; height: 100%; gap: 36px;">
-        <!-- Headline -->
-        <div>
-          <div style="font-family: 'Fira Mono', monospace; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px;">HOW WE START</div>
-          <h2 style="font-size: 52px; margin-bottom: 12px; line-height: 1.1;">We operate first. <span class="highlight">Then we franchise.</span></h2>
-        </div>
-
-        <!-- The arc: 3 numbered steps -->
-        <div style="display: flex; flex-direction: column; gap: 24px; flex: 1; justify-content: center;">
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-            <div style="display: flex; gap: 18px; align-items: flex-start;">
-              <span style="font-family: 'Fira Mono', monospace; font-size: 36px; color: var(--teal); line-height: 1; flex-shrink: 0;">01</span>
-              <div>
-                <h4 style="font-size: 20px; font-weight: 500; margin-bottom: 8px;">We collect first</h4>
-                <p style="font-size: 16px; color: var(--gray); line-height: 1.6;">We put on the gloves, run the collection, and learn the hard parts ourselves.</p>
-                <p style="font-size: 15px; color: var(--light-gray); margin-top: 10px; line-height: 1.5;"><span class="highlight" style="font-weight: 500;">Starting with</span> datacenter server assembly. Paul built these racks at Meta.</p>
-              </div>
-            </div>
-            <div style="display: flex; gap: 18px; align-items: flex-start;">
-              <span style="font-family: 'Fira Mono', monospace; font-size: 36px; color: var(--teal); line-height: 1; flex-shrink: 0;">02</span>
-              <div>
-                <h4 style="font-size: 20px; font-weight: 500; margin-bottom: 8px;">Build the pipeline as we go</h4>
-                <p style="font-size: 16px; color: var(--gray); line-height: 1.6;">Processing, labeling, taxonomizing, quality scoring. Every tool solves a problem we hit.</p>
-                <p style="font-size: 15px; color: var(--light-gray); margin-top: 10px; line-height: 1.5;">All data goes through <span class="highlight" style="font-weight: 500;">Provenance</span> from day one.</p>
-              </div>
-            </div>
-            <div style="display: flex; gap: 18px; align-items: flex-start;">
-              <span style="font-family: 'Fira Mono', monospace; font-size: 36px; color: var(--teal); line-height: 1; flex-shrink: 0;">03</span>
-              <div>
-                <h4 style="font-size: 20px; font-weight: 500; margin-bottom: 8px;">Then we open it up</h4>
-                <p style="font-size: 16px; color: var(--gray); line-height: 1.6;">Once it works for us, we lease hardware to operators and expand into new domains. They collect, we own the data.</p>
-                <p style="font-size: 15px; color: var(--light-gray); margin-top: 10px; line-height: 1.5;">Signed contracts + exclusive data in the warehouse <span class="highlight" style="font-weight: 500;">before</span> we need to scale.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom: what the first collection captures -->
-          <div style="margin-top: 8px;">
-            <h4 style="font-family: 'Fira Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 14px;">WHAT OUR HARDWARE CAPTURES</h4>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
-              <div style="border-left: 2px solid var(--teal); padding-left: 14px;">
-                <p style="font-size: 15px; color: var(--white); line-height: 1.5; font-weight: 500;">Hand pose + tactile</p>
-                <p style="font-size: 13px; color: var(--gray); line-height: 1.4; margin-top: 4px;">Force, pressure, finger articulation</p>
-              </div>
-              <div style="border-left: 2px solid var(--teal); padding-left: 14px;">
-                <p style="font-size: 15px; color: var(--white); line-height: 1.5; font-weight: 500;">Multi-view video</p>
-                <p style="font-size: 13px; color: var(--gray); line-height: 1.4; margin-top: 4px;">Egocentric + scene cameras, time-synced</p>
-              </div>
-              <div style="border-left: 2px solid var(--teal); padding-left: 14px;">
-                <p style="font-size: 15px; color: var(--white); line-height: 1.5; font-weight: 500;">Contact physics</p>
-                <p style="font-size: 13px; color: var(--gray); line-height: 1.4; margin-top: 4px;">Snap-fit forces, connector resistance</p>
-              </div>
-              <div style="border-left: 2px solid var(--teal); padding-left: 14px;">
-                <p style="font-size: 15px; color: var(--white); line-height: 1.5; font-weight: 500;">3D environment</p>
-                <p style="font-size: 13px; color: var(--gray); line-height: 1.4; margin-top: 4px;">Gaussian splat + SLAM reconstruction</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
-        Haptica
-      </div>
-      <div class="slide-number"><span>12</span> / 16</div>
-    </div>
-
-    <!-- Slide 13: Market -->
-    <div class="slide" data-slide="13">
-      <div class="left-content">
-        <h2 style="font-size: 54px; margin-bottom: 40px;">Every robot needs <span class="highlight">training data</span></h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-bottom: 52px;">
-          <div style="background: var(--card); border: 1px solid var(--card-border); padding: 36px 40px;">
-            <div style="font-family: 'Fira Mono', monospace; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 14px;">Physical AI Market (2034)</div>
-            <div class="highlight" style="font-size: 72px; font-weight: 300; line-height: 1; margin-bottom: 10px;">$68B</div>
-            <div style="font-size: 18px; color: var(--gray); line-height: 1.6;">+33% CAGR · Manufacturing, logistics, assembly</div>
-          </div>
-          <div style="background: var(--card); border: 1px solid var(--card-border); padding: 36px 40px;">
-            <div style="font-family: 'Fira Mono', monospace; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 14px;">Robotic Training Data (2034)</div>
-            <div style="font-size: 72px; font-weight: 300; line-height: 1; margin-bottom: 10px; color: var(--teal);">$30B</div>
-            <div style="font-size: 18px; color: var(--gray); line-height: 1.6;">~$1B today · No scaled collection solution exists</div>
-          </div>
-        </div>
-        <h3 style="font-size: 28px; font-weight: 400; margin-bottom: 28px;">Provenance is the <span class="highlight">marketplace for all physical data</span></h3>
-        <div class="three-col" style="margin-top: 0; gap: 32px;">
-          <div class="col-box" style="border-color: var(--border); padding: 36px;">
-            <h4 class="highlight" style="font-size: 14px; letter-spacing: 0.1em; font-weight: 600; margin-bottom: 12px;">WHY NOW</h4>
-            <p style="font-size: 18px; color: var(--light-gray); line-height: 1.6;">Hardware, compute, and capital are ready. Figure, PI, and DeepMind are all bottlenecked on data.</p>
-          </div>
-          <div class="col-box" style="border-color: var(--border); padding: 36px;">
-            <h4 class="highlight" style="font-size: 14px; letter-spacing: 0.1em; font-weight: 600; margin-bottom: 12px;">NO ONE OWNS THE MIDDLE</h4>
-            <p style="font-size: 18px; color: var(--light-gray); line-height: 1.6;">Data exists everywhere. No platform connects buyers to quality, benchmarked datasets. That gap is Provenance.</p>
-          </div>
-          <div class="col-box" style="border-color: var(--border); padding: 36px;">
-            <h4 class="highlight" style="font-size: 14px; letter-spacing: 0.1em; font-weight: 600; margin-bottom: 12px;">WINNER TAKES MOST</h4>
-            <p style="font-size: 18px; color: var(--light-gray); line-height: 1.6;">Data marketplaces consolidate. The first platform with real supply and quality standards becomes the default.</p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
-        Haptica
-      </div>
-      <div class="slide-number"><span>13</span> / 16</div>
-    </div>
-
-    <!-- Slide 14: Core Team -->
-    <div class="slide" data-slide="14">
       <div class="center-content">
         <div class="team-section">
           <h2 style="font-size: 54px;">Haptica Team</h2>
@@ -1200,55 +1005,33 @@
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>14</span> / 16</div>
+      <div class="slide-number"><span>10</span> / 12</div>
     </div>
 
-    <!-- Slide 15: The Ask -->
-    <div class="slide" data-slide="15">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; height: 100%; padding: 80px;">
-        <div>
-          <div style="font-family: 'Fira Mono', monospace; font-size: 14px; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 18px;">PRE-SEED ROUND</div>
-          <h2 style="font-size: 54px; margin-bottom: 16px;">$500K</h2>
-          <p style="font-size: 22px; color: var(--gray); margin-bottom: 24px;">$10M valuation cap · Standard YC SAFE</p>
-          <div style="margin-bottom: 48px;">
-            <a href="https://na4.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=26afc2d4-89ff-4b15-89ac-6c13b5470dae&env=na4&acct=3a011185-44cc-4024-b13f-2a81d2cbaa3f&v=2" target="_blank" style="display: inline-block; font-family: 'Fira Mono', monospace; font-size: 16px; font-weight: 600; letter-spacing: 0.05em; color: #ffffff; background: #000000; border: 1px solid #000000; padding: 12px 24px; text-decoration: none;">SIGN SAFE →</a>
-            <div style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--gray); margin-top: 10px; letter-spacing: 0.05em;">haptica.ai/safe</div>
+    <!-- Slide 11: Current Progress -->
+    <div class="slide" data-slide="11">
+      <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+        <h2 style="font-size: 54px; margin-bottom: 60px;">Current progress</h2>
+        <div style="display: flex; flex-direction: column; gap: 28px; max-width: 800px;">
+          <div style="display: flex; gap: 16px; align-items: first baseline;">
+            <span style="font-family: var(--font-mono); font-size: 14px; color: #28c840; flex-shrink: 0;">&#10003;</span>
+            <p style="font-size: 24px; line-height: 1.5;">Desktop capture agent built and running</p>
           </div>
-
-          <h4 style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 20px;">USE OF FUNDS</h4>
-          <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 48px;">
-            <div style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
-              <span>Hardware prototyping &amp; sensors</span>
-            </div>
-            <div style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
-              <span>Data collection pilot</span>
-            </div>
-            <div style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
-              <span>Engineering &amp; operations</span>
-            </div>
+          <div style="display: flex; gap: 16px; align-items: first baseline;">
+            <span style="font-family: var(--font-mono); font-size: 14px; color: #28c840; flex-shrink: 0;">&#10003;</span>
+            <p style="font-size: 24px; line-height: 1.5;">Processing pipeline live: OCR, chunking, structured context</p>
           </div>
-        </div>
-
-        <div>
-          <h4 style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 20px;">MILESTONES THIS UNLOCKS</h4>
-          <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 48px;">
-            <div class="col-box" style="padding: 24px 28px;">
-              <h4 style="font-size: 18px; font-weight: 500; margin-bottom: 6px;">Curated datasets on Provenance</h4>
-              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">Proprietary tactile data + high-quality open source, filtered and taxonomized</p>
-            </div>
-            <div class="col-box" style="padding: 24px 28px;">
-              <h4 style="font-size: 18px; font-weight: 500; margin-bottom: 6px;">Provenance MVP live</h4>
-              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">First customers browsing and purchasing data through the platform</p>
-            </div>
-            <div class="col-box" style="padding: 24px 28px;">
-              <h4 style="font-size: 18px; font-weight: 500; margin-bottom: 6px;">Paying customer LOI</h4>
-              <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">Data licensing agreement with a foundation model lab</p>
-            </div>
+          <div style="display: flex; gap: 16px; align-items: first baseline;">
+            <span style="font-family: var(--font-mono); font-size: 14px; color: #28c840; flex-shrink: 0;">&#10003;</span>
+            <p style="font-size: 24px; line-height: 1.5;">MCP server serving context to AI tools</p>
           </div>
-
-          <div style="border-top: 1px solid var(--border); padding-top: 24px;">
-            <h4 style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 12px;">NEXT ROUND</h4>
-            <p style="font-size: 18px; color: var(--light-gray); line-height: 1.6;">Seed raise after completed pilot, signed licensing deal, and demonstrated model improvement from our data</p>
+          <div style="display: flex; gap: 16px; align-items: first baseline;">
+            <span style="font-family: var(--font-mono); font-size: 14px; color: #28c840; flex-shrink: 0;">&#10003;</span>
+            <p style="font-size: 24px; line-height: 1.5;">5 users in closed alpha, 34 days of continuous data</p>
+          </div>
+          <div style="display: flex; gap: 16px; align-items: first baseline;">
+            <span style="font-family: var(--font-mono); font-size: 14px; color: var(--gray); flex-shrink: 0;">&#9675;</span>
+            <p style="font-size: 24px; line-height: 1.5; color: var(--gray);">Onboarding first paying users</p>
           </div>
         </div>
       </div>
@@ -1256,11 +1039,11 @@
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>15</span> / 16</div>
+      <div class="slide-number"><span>11</span> / 12</div>
     </div>
 
-    <!-- Slide 16: Thank you -->
-    <div class="slide" data-slide="16">
+    <!-- Slide 12: Thank you -->
+    <div class="slide" data-slide="12">
       <div class="center-content">
         <h1 style="font-size: 96px;">Thank you.</h1>
         <div class="mono" style="margin-top: 32px; font-size: 18px; color: var(--teal); letter-spacing: 0.05em;">paul@haptica.ai &nbsp;|&nbsp; jackieoliver@haptica.ai</div>
@@ -1269,7 +1052,7 @@
         <img src="owl-logo.png" alt="Haptica owl" style="width: 24px; height: 24px; object-fit: contain;">
         Haptica
       </div>
-      <div class="slide-number"><span>16</span> / 16</div>
+      <div class="slide-number"><span>12</span> / 12</div>
     </div>
 
   </div>

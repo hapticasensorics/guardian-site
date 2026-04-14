@@ -12,28 +12,28 @@
   const messages: Message[] = [
     {
       sender: 'you',
-      question: 'who matters to me?'
+      question: 'help me debug this'
     },
     {
       sender: 'guardian',
-      intro: 'Measured by voice, not contacts:',
-      pre: `Paul     ████████  4 days  cofounder, night drives
-Lindsay  ████████  4 days  who you pitch to at 11pm
-Sita     ████░░░░  2 days  deep conversations
-Tiffany  ██░░░░░░  2 days  the midnight barista
-Benedict █░░░░░░░  1 day   stranger, orange-walled restaurant`
+      intro: 'You\u2019ve been working on the cross-device alignment pipeline since Tuesday. Last night you decided to keep Whisper+Gemini reversible. The failing test is in scene_claims.py:142, same module you refactored yesterday.',
+      pre: `  context    4.2h session  3 tools  2 decisions tracked
+  last edit  scene_claims.py:142  11:47pm
+  related    PR #38 merged Wed, broke timestamp parsing`,
+      outro: 'The error matches the timestamp format change from PR #38. Want me to pull up the diff?'
     },
     {
       sender: 'you',
-      question: 'when am i happiest?'
+      question: 'what did I commit to this week?'
     },
     {
       sender: 'guardian',
-      intro: 'Late-night conversations with people you just met, explaining what you\u2019re building:',
-      pre: `  mar 21  restaurant, 1am   ████████████
-  mar 22  bar, 11pm         ████████████
-  mar 23  cafe, 4am         ████████████`,
-      outro: 'Also: driving alone with French music. Zero negative signals ever recorded during those drives.'
+      intro: 'Across Slack, meetings, and code reviews:',
+      pre: `  Mon  told Alex: API docs done by Thursday
+  Tue  standup: ship MCP auth before Friday
+  Wed  PR review: promised to fix the race condition
+  Thu  email to investor: deck update by Sunday`,
+      outro: 'The API docs and MCP auth are both overdue. The race condition fix is still in draft.'
     }
   ];
 
@@ -69,7 +69,7 @@ Benedict █░░░░░░░  1 day   stranger, orange-walled restaurant`
 <div class="surface-card" style="max-width: 600px;">
   <div class="flex items-center justify-between border-b border-[var(--color-border)] px-5 py-3">
     <span class="label-chip" style="color: var(--color-text)">guardian</span>
-    <span class="label-chip" style="color: #999">19,300 memories · 17 days</span>
+    <span class="label-chip" style="color: #999">40,936 memories · 34 days</span>
   </div>
 
   <div class="px-5" style="min-height: 120px;">
@@ -110,7 +110,7 @@ Benedict █░░░░░░░  1 day   stranger, orange-walled restaurant`
   </div>
 
   <div class="border-t border-[var(--color-border)] px-5 py-3 text-center text-[11px]" style="color: #999">
-    4 sources · screen 44% · voice 35% · video 19% · metadata 2%
+    screen capture · OCR · meetings · commits · served via MCP
   </div>
 </div>
 

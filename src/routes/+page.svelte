@@ -6,18 +6,18 @@
   <title>Guardian</title>
   <meta
     name="description"
-    content="Guardian memorizes your screen, your conversations, and the world around you, then acts on it before you have to ask."
+    content="Guardian captures your screen continuously and gives every AI tool persistent memory of your work through MCP."
   />
 </svelte:head>
 
 <section class="mb-16 mt-4">
   <div>
     <h1 class="m-0 font-[var(--font-serif)] italic" style="font-weight: 300">
-      The assistant that understands you.
+      Your AI tools forget everything. Guardian doesn't.
     </h1>
     <p class="mb-8 mt-4 max-w-[56ch] text-base leading-6" style="color: var(--color-text)">
-      Guardian memorizes your screen, your conversations, and the world around you, then acts on
-      it before you have to ask.
+      A Mac app that captures your screen in the background, builds structured memory of your
+      work, and serves it to Claude, Cursor, and ChatGPT through MCP.
     </p>
 
     <div class="mb-10 text-center">
@@ -36,26 +36,22 @@
 </section>
 
 <section class="mb-16">
-  <h2 class="section-rule mb-6 mt-0">A sample day</h2>
+  <h2 class="section-rule mb-6 mt-0">A sample work day</h2>
 
   <p class="mt-0 mb-6 text-[15px] leading-7" style="color: rgba(26, 26, 26, 0.65)">
-    Sunday. A late night rolls into a slow morning, an airport pickup, a long drive with good
-    conversation, and an honest evening with a friend. No agenda. Guardian captured all of it.
+    Wednesday. Deep coding in the morning, a standup, context switching between three projects, a design review, and a late-night fix. Guardian captured all of it.
   </p>
 
   <div class="surface-card px-5">
     <div class="repo-divider py-5 first:pt-0">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">00:30</span>
+        <span class="score-chip shrink-0 sm:mt-0.5">09:30</span>
         <div>
           <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Still at a 24-hour cafe from the night before. A conversation about Proust turns
-            into a debate about whether recording your life changes how you live it. Someone
-            asks about the app. Jackie says the data is thin but imagine a super intelligent
-            AI analyzing every interaction you have.
+            Deep work on the ingestion pipeline. VS Code open, three terminal tabs, Claude Code running. Refactored the timestamp parser in scene_claims.py. Decided to keep the Whisper+Gemini path reversible instead of committing to one.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Corgi Cafe, San Francisco
+            VS Code &middot; Claude Code &middot; 2.1h focus block
           </p>
         </div>
       </div>
@@ -63,15 +59,13 @@
 
     <div class="repo-divider py-5">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">09:00</span>
+        <span class="score-chip shrink-0 sm:mt-0.5">11:45</span>
         <div>
           <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Morning at home. Beatles White Album playing. Casual exchanges about the neighbor,
-            an ice machine, and whether anyone wants to drive to San Jose. Guardian identifies
-            the music as media, not conversation.
+            Standup with Paul. Committed to shipping MCP auth by Friday. Alex asked about the API docs, said they&rsquo;d be done by Thursday. Mentioned the race condition in PR #38 needs a fix before merge.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            347 Dolores St, San Francisco
+            Google Meet &middot; 12 min &middot; 3 commitments tracked
           </p>
         </div>
       </div>
@@ -79,16 +73,13 @@
 
     <div class="repo-divider py-5">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">13:00</span>
+        <span class="score-chip shrink-0 sm:mt-0.5">14:00</span>
         <div>
           <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Airport pickup at SFO Terminal 3. Kendrick Lamar playing on the drive over.
-            Jackie calls from the ground floor: &ldquo;Hi, I&rsquo;m at terminal three,
-            door one.&rdquo; The drive back becomes two hours of conversation about movies,
-            memory, and what Proust actually meant.
+            Context switch to the landing page redesign. Figma open alongside the codebase. Reviewed three layout options, picked the editorial direction. Sent a Slack message to the team with the decision and reasoning.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            SFO &rarr; San Francisco
+            Figma &middot; Slack &middot; 1 decision logged
           </p>
         </div>
       </div>
@@ -99,12 +90,10 @@
         <span class="score-chip shrink-0 sm:mt-0.5">16:30</span>
         <div>
           <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            An honest conversation with Paul. Velvet Underground playing. Jackie says
-            &ldquo;I can&rsquo;t do the cheering. I&rsquo;m just not a cheering person.
-            This is not who I am.&rdquo; Paul pushes back. Neither of them drops it.
+            Back to code. PR review on the MCP server changes. Found a bug in the auth flow, left a comment. Switched to Cursor for the race condition fix. Got halfway through before getting pulled into an investor email.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            San Francisco
+            GitHub &middot; Cursor &middot; Gmail &middot; 3 context switches
           </p>
         </div>
       </div>
@@ -112,14 +101,13 @@
 
     <div class="repo-divider py-5">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">18:30</span>
+        <span class="score-chip shrink-0 sm:mt-0.5">23:00</span>
         <div>
           <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Taco Bell run in Hayes Valley. The conversation is lighter now. They talk about
-            people they know, who&rsquo;s cute, who&rsquo;s serious, what to do this week.
+            Late-night session. Finally fixed the race condition. Pushed the commit, closed the PR. Opened Claude Code to draft the API docs but got sidetracked reading a thread about MCP auth patterns.
           </p>
           <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Hayes Valley, SF
+            VS Code &middot; GitHub &middot; Claude Code &middot; 1.8h focus block
           </p>
         </div>
       </div>
@@ -128,9 +116,7 @@
     <div class="repo-divider py-5 last:pb-0">
       <p class="label-chip mb-2 mt-0" style="color: #999">Guardian</p>
       <p class="m-0 text-[15px] italic leading-7" style="color: var(--color-text)">
-        At 1 AM you told someone that recording your life might change how you live it.
-        At 4:30 PM you told Paul you can&rsquo;t be someone you&rsquo;re not. You said
-        both things like they were separate thoughts. They aren&rsquo;t.
+        You committed to API docs by Thursday and MCP auth by Friday. The docs haven&rsquo;t been started. The race condition is fixed but you never went back to the auth work. Tomorrow&rsquo;s standup is in 10 hours.
       </p>
     </div>
   </div>
