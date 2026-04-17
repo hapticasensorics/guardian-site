@@ -15,9 +15,9 @@
 
       --bg: #fcfcfc;
       --black: #000000;
-      --body: #1a1a1a;
-      --gray: #888;
-      --border: #d9d9d4;
+      --body: #333333;
+      --gray: #999999;
+      --border: #e0e0e0;
     }
 
     * {
@@ -39,7 +39,7 @@
     .page {
       max-width: 920px;
       margin: 0 auto;
-      padding: 80px 64px 120px;
+      padding: 48px 64px 48px;
     }
 
     /* Header */
@@ -47,7 +47,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-bottom: 56px;
+      padding-bottom: 32px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -82,7 +82,7 @@
 
     /* Hero */
     .hero {
-      padding: 112px 0 80px;
+      padding: 56px 0 32px;
     }
 
     .eyebrow {
@@ -117,13 +117,13 @@
 
     /* Memo body */
     .memo {
-      padding: 48px 0 72px;
+      padding: 24px 0 40px;
       max-width: 780px;
       position: relative;
     }
 
     .memo-para {
-      margin-bottom: 40px;
+      margin-bottom: 24px;
     }
 
     .memo-para:last-child {
@@ -147,7 +147,7 @@
       width: 100%;
       height: 1px;
       background: var(--border);
-      margin: 64px 0;
+      margin: 32px 0;
     }
 
     /* Team */
@@ -158,13 +158,13 @@
       color: var(--black);
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      margin-bottom: 56px;
+      margin-bottom: 28px;
     }
 
     .team {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 72px;
+      gap: 56px;
     }
 
     .bio {
@@ -209,8 +209,8 @@
 
     /* Footer */
     .footer {
-      margin-top: 96px;
-      padding-top: 40px;
+      margin-top: 40px;
+      padding-top: 24px;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
@@ -257,6 +257,38 @@
 
     .footer-links a:hover {
       border-bottom-color: var(--black);
+    }
+
+    @media print {
+      @page {
+        size: letter;
+        margin: 0;
+      }
+      html, body { background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; height: 10.6in; overflow: hidden; }
+      .page { padding: 18px 48px 14px; max-width: none; height: 10.6in; overflow: hidden; }
+      .header { padding-bottom: 10px; }
+      .brand img { width: 40px; height: 40px; }
+      .brand .wordmark { font-size: 22px; }
+      .header-meta { font-size: 11px; }
+      .hero { padding: 10px 0 6px; }
+      .eyebrow { margin-bottom: 6px; font-size: 11px; }
+      h1 { font-size: 44px; margin-bottom: 4px; }
+      .subtitle { font-size: 15px; }
+      .memo { padding: 4px 0 8px; }
+      .memo-para { margin-bottom: 6px; }
+      .memo-body { font-size: 13.5px; line-height: 1.5; }
+      .divider { margin: 6px 0; }
+      .section-label { margin-bottom: 6px; font-size: 11px; }
+      .team { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+      .bio-name { font-size: 20px; margin-bottom: 4px; }
+      .bio-role { margin-bottom: 10px; font-size: 11px; }
+      .bio-text { font-size: 12.5px; line-height: 1.48; }
+      .bio-closer { font-size: 13.5px; margin-top: 6px; }
+      .footer { margin-top: 10px; padding-top: 8px; flex-wrap: nowrap !important; }
+      .footer-left img { width: 20px; height: 20px; }
+      .footer-left span { font-size: 14px; }
+      .footer-links { gap: 16px; flex-wrap: nowrap !important; }
+      .footer-links a { font-size: 10px; white-space: nowrap; }
     }
 
     @media (max-width: 780px) {
