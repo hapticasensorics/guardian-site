@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haptica — Overview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Merriweather+Sans:wght@300;400;500;600&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-serif: 'Merriweather', Georgia, Cambria, 'Times New Roman', serif;
+      --font-sans: 'Merriweather Sans', ui-sans-serif, system-ui, sans-serif;
+      --font-mono: 'Fira Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+      --bg: #fcfcfc;
+      --black: #000000;
+      --body: #1a1a1a;
+      --gray: #888;
+      --border: #d9d9d4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 80px 64px 120px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+    }
+
+    .brand .wordmark {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 34px;
+      color: var(--black);
+      letter-spacing: 0.005em;
+    }
+
+    .header-meta {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--gray);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 112px 0 80px;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--gray);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-size: 84px;
+      line-height: 1.05;
+      color: var(--black);
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 24px;
+      color: var(--gray);
+      max-width: 720px;
+      line-height: 1.4;
+    }
+
+    /* Memo body */
+    .memo {
+      padding: 48px 0 72px;
+      max-width: 780px;
+      position: relative;
+    }
+
+    .memo-para {
+      margin-bottom: 40px;
+    }
+
+    .memo-para:last-child {
+      margin-bottom: 0;
+    }
+
+    .memo-body {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      line-height: 1.75;
+      color: var(--body);
+    }
+
+    .memo-body strong {
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    /* Section divider */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 64px 0;
+    }
+
+    /* Team */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--black);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 56px;
+    }
+
+    .team {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+    }
+
+    .bio {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bio-name {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .bio-role {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--gray);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .bio-text {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--body);
+    }
+
+    .bio-closer {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--black);
+      margin-top: 14px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 96px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-left img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+
+    .footer-left span {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--gray);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: border-color 160ms ease;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: var(--black);
+    }
+
+    @media (max-width: 780px) {
+      .page { padding: 48px 28px 72px; }
+      .brand img { width: 48px; height: 48px; }
+      .brand .wordmark { font-size: 26px; }
+      .hero { padding: 72px 0 48px; }
+      h1 { font-size: 72px; letter-spacing: -0.025em; }
+      .subtitle { font-size: 22px; }
+      .memo-body { font-size: 19px; }
+      .team { grid-template-columns: 1fr; gap: 56px; }
+      .bio-name { font-size: 28px; }
+      .bio-text { font-size: 18px; }
+      .bio-closer { font-size: 20px; }
+      .footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <img src="owl-logo.png" alt="Haptica owl">
+        <span class="wordmark">Haptica</span>
+      </div>
+      <div class="header-meta">Overview &middot; 2026</div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="eyebrow">A Memo</div>
+      <h1>Haptica</h1>
+      <div class="subtitle">A context engine for agentic work.</div>
+    </section>
+
+    <!-- Memo -->
+    <article class="memo">
+      <div class="memo-para">
+        <div class="memo-body">Context management is the bottleneck for agentic work. AI agents lose memory between sessions, multi-agent workflows step over each other, and the humans working alongside them spend hours every week re-explaining what they're doing and why. Haptica is a context engine. Install it, log in, and it passively captures what you work on, building a living wiki for every project you touch, updating as you work, readable in any browser with a shareable link. Claude Code, Cursor, and Codex connect via MCP. No configuration, no prompts, no workflow changes.</div>
+      </div>
+
+      <div class="memo-para">
+        <div class="memo-body">The same capture layer that feeds context to a coding agent is the foundation for a faithful record of your digital life. The reason we're not building that first is that "remember everything" is a feature in search of a forcing function, and agentic workflows are that forcing function. Engineers today, everyone eventually.</div>
+      </div>
+    </article>
+
+    <div class="divider"></div>
+
+    <!-- Team -->
+    <section>
+      <div class="section-label">Team</div>
+      <div class="team">
+        <div class="bio">
+          <div class="bio-name">Jackie Oliver</div>
+          <div class="bio-role">Founder</div>
+          <div class="bio-text">Jackie Oliver first combined her obsession with markets and technology by automating TF2 skin trading arbitrage. She made enough to pay for every game purchase since. After UVA (B.A. Econ &amp; Philosophy), she spent two years designing credit algorithms for modern banking rating systems.</div>
+          <div class="bio-closer">A designer with an arbitrageur's nose.</div>
+        </div>
+
+        <div class="bio">
+          <div class="bio-name">Paul Han</div>
+          <div class="bio-role">Co-Founder</div>
+          <div class="bio-text">Paul Han first built a fusion generator in his basement and later went to the National Science Fair. At Yale (B.S. EE &amp; Political Science), he was Political Union VP. After three years at Meta designing AI servers, he designed nuclear weapons at Livermore National Lab for two.</div>
+          <div class="bio-closer">A builder who can sell and lead.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-left">
+        <img src="owl-logo.png" alt="Haptica owl">
+        <span>Haptica</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://haptica.ai">haptica.ai</a>
+        <a href="mailto:jackie@haptica.ai">jackie@haptica.ai</a>
+        <a href="mailto:paul@haptica.ai">paul@haptica.ai</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
