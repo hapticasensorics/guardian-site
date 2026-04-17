@@ -170,6 +170,7 @@
     .bio {
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
 
     .bio-name {
@@ -204,7 +205,8 @@
       font-weight: 400;
       line-height: 1.5;
       color: var(--black);
-      margin-top: 14px;
+      margin-top: auto;
+      padding-top: 14px;
     }
 
     /* Footer */
@@ -214,48 +216,48 @@
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .footer-left {
-      display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 20px;
+      flex-wrap: nowrap;
     }
 
-    .footer-left img {
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .footer-brand img {
       width: 28px;
       height: 28px;
       object-fit: contain;
     }
 
-    .footer-left span {
+    .footer-brand em {
       font-family: var(--font-serif);
       font-style: italic;
       font-size: 18px;
       color: var(--gray);
     }
 
-    .footer-links {
-      display: flex;
-      gap: 32px;
+    .footer-contact {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--gray);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    .footer-links a {
-      font-family: var(--font-mono);
-      font-size: 14px;
+    .footer-contact a {
       color: var(--black);
       text-decoration: none;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
       border-bottom: 1px solid transparent;
-      padding-bottom: 2px;
       transition: border-color 160ms ease;
     }
 
-    .footer-links a:hover {
+    .footer-contact a:hover {
       border-bottom-color: var(--black);
     }
 
@@ -264,8 +266,8 @@
         size: letter;
         margin: 0;
       }
-      html, body { background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; height: 10.6in; overflow: hidden; }
-      .page { padding: 18px 48px 14px; max-width: none; height: 10.6in; overflow: hidden; }
+      html, body { background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; height: 10.95in; overflow: hidden; margin: 0; }
+      .page { padding: 18px 48px 14px; max-width: none; min-height: 10.95in; box-sizing: border-box; display: flex; flex-direction: column; }
       .header { padding-bottom: 10px; }
       .brand img { width: 40px; height: 40px; }
       .brand .wordmark { font-size: 22px; }
@@ -283,26 +285,25 @@
       .bio-name { font-size: 20px; margin-bottom: 4px; }
       .bio-role { margin-bottom: 10px; font-size: 11px; }
       .bio-text { font-size: 12.5px; line-height: 1.48; }
-      .bio-closer { font-size: 13.5px; margin-top: 6px; }
-      .footer { margin-top: 10px; padding-top: 8px; flex-wrap: nowrap !important; }
-      .footer-left img { width: 20px; height: 20px; }
-      .footer-left span { font-size: 14px; }
-      .footer-links { gap: 16px; flex-wrap: nowrap !important; }
-      .footer-links a { font-size: 10px; white-space: nowrap; }
+      .bio-closer { font-size: 13.5px; margin-top: auto; padding-top: 10px; }
+      .footer { margin-top: auto !important; padding-top: 12px; flex-wrap: nowrap !important; display: flex !important; }
+      .footer-brand img { width: 22px; height: 22px; }
+      .footer-brand em { font-size: 15px; }
+      .footer-contact { font-size: 10px; letter-spacing: 0.1em; }
     }
 
-    @media (max-width: 780px) {
-      .page { padding: 48px 28px 72px; }
-      .brand img { width: 48px; height: 48px; }
-      .brand .wordmark { font-size: 26px; }
-      .hero { padding: 72px 0 48px; }
-      h1 { font-size: 72px; letter-spacing: -0.025em; }
-      .subtitle { font-size: 22px; }
-      .memo-body { font-size: 19px; }
-      .team { grid-template-columns: 1fr; gap: 56px; }
-      .bio-name { font-size: 28px; }
-      .bio-text { font-size: 18px; }
-      .bio-closer { font-size: 20px; }
+    @media screen and (max-width: 600px) {
+      .page { padding: 32px 20px 48px; }
+      .brand img { width: 44px; height: 44px; }
+      .brand .wordmark { font-size: 22px; }
+      .hero { padding: 48px 0 32px; }
+      h1 { font-size: 56px; letter-spacing: -0.025em; }
+      .subtitle { font-size: 18px; }
+      .memo-body { font-size: 17px; }
+      .team { grid-template-columns: 1fr; gap: 40px; }
+      .bio-name { font-size: 24px; }
+      .bio-text { font-size: 16px; }
+      .bio-closer { font-size: 18px; }
       .footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -361,15 +362,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="footer-left">
-        <img src="owl-logo.png" alt="Haptica owl">
-        <span>Haptica</span>
-      </div>
-      <div class="footer-links">
-        <a href="https://haptica.ai">haptica.ai</a>
-        <a href="mailto:jackie@haptica.ai">jackie@haptica.ai</a>
-        <a href="mailto:paul@haptica.ai">paul@haptica.ai</a>
-      </div>
+      <span class="footer-brand"><img src="owl-logo.png" alt="Haptica owl"><em>Haptica</em></span>
+      <span class="footer-contact"><a href="https://haptica.ai">haptica.ai</a> &middot; <a href="mailto:jackie@haptica.ai">jackie@haptica.ai</a> &middot; <a href="mailto:paul@haptica.ai">paul@haptica.ai</a></span>
     </footer>
 
   </div>
