@@ -127,7 +127,7 @@
       font-weight: 300;
       font-family: var(--font-serif);
       line-height: 1.15;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     h3 {
@@ -219,19 +219,23 @@
 
     .bullet-list li {
       position: relative;
-      font-size: 32px;
-      line-height: 1.6;
-      padding-left: 40px;
-      margin-bottom: 40px;
+      font-size: 36px;
+      line-height: 1.5;
+      padding-left: 42px;
+      margin-bottom: 32px;
+    }
+
+    .bullet-list li:last-child {
+      margin-bottom: 0;
     }
 
     .bullet-list li::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 20px;
-      width: 12px;
-      height: 12px;
+      top: 16px;
+      width: 10px;
+      height: 10px;
       background: var(--black);
     }
 
@@ -584,6 +588,27 @@
       text-transform: uppercase;
       margin-top: 40px;
     }
+
+    .slide-archived { display: none !important; }
+
+    /* Print mode: one slide per PDF page at 1920x1080 */
+    @media print {
+      @page { size: 1920px 1080px; margin: 0; }
+      html, body { width: 1920px; height: auto; overflow: visible; }
+      .deck { width: 1920px; height: auto; position: static; }
+      .slide {
+        display: flex !important;
+        flex-direction: column;
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        page-break-after: always;
+        break-after: page;
+      }
+      .slide:last-of-type { page-break-after: auto; break-after: auto; }
+      .slide-archived { display: none !important; }
+      .nav-hint { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -608,7 +633,7 @@
     <!-- Slide 2: Context is the bottleneck -->
     <div class="slide" data-slide="2">
       <div class="center-content">
-        <h2 style="font-size: 72px; margin-bottom: 40px; max-width: 1100px;">Context is the bottleneck.</h2>
+        <h2 style="font-size: 80px; max-width: 1100px;">Context is the bottleneck.</h2>
         <ul class="bullet-list" style="max-width: 1000px;">
           <li>Status updates, handoffs, and re-explanations eat hours every week.</li>
           <li>AI agents need context pasted in every session.</li>
@@ -622,20 +647,68 @@
       <div class="slide-number"><span>02</span> / 13</div>
     </div>
 
-    <!-- Slide 3: Value Proposition -->
+    <!-- Slide 3: Context machine + how it works (merged) -->
     <div class="slide" data-slide="3">
-      <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <h2 style="font-size: 72px; margin-bottom: 70px;">Haptica is a context machine for your work.</h2>
-        <div style="display: flex; flex-direction: column; gap: 48px; max-width: 1400px;">
-          <div style="display: flex; gap: 24px; align-items: first baseline;">
-            <span style="font-family: 'Fira Mono', monospace; font-size: 18px; color: var(--accent); flex-shrink: 0;">01</span>
-            <p style="font-size: 30px; line-height: 1.5;">Builds human- and agent-readable wikis from your active projects, based on desktop screenshots.</p>
-          </div>
-          <div style="display: flex; gap: 24px; align-items: first baseline;">
-            <span style="font-family: 'Fira Mono', monospace; font-size: 18px; color: var(--accent); flex-shrink: 0;">02</span>
-            <p style="font-size: 30px; line-height: 1.5;">Wikis update dynamically. Share with users, other agents, or publish a link any agent can read with auth.</p>
-          </div>
+      <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 40px;">
+        <div>
+          <h2 style="margin: 0 0 24px 0;">Haptica is a context engine for your work.</h2>
+          <ul class="bullet-list" style="margin-top: 0; max-width: 1500px;">
+            <li>Dynamic memory, built from your screen.</li>
+            <li>A live wiki for every project, updating as you work.</li>
+            <li>Coordinate teams and multi-agent workflows.</li>
+          </ul>
         </div>
+
+        <!-- Flow diagram -->
+        <div style="display: flex; align-items: stretch; gap: 0; max-width: 1500px;">
+
+          <!-- Box 1: Capture -->
+          <div style="flex: 1; background: #000; color: #fcfcfc; padding: 32px 24px; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px;">Capture</div>
+            <h4 style="font-size: 26px; font-weight: 500; color: #fcfcfc; margin: 0 0 16px 0;">Your screen</h4>
+            <div style="font-family: var(--font-mono); font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.9;">
+              browser tabs<br>terminal<br>editor<br>chat
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; padding: 0 14px; color: var(--gray); font-size: 32px;">&rarr;</div>
+
+          <!-- Box 2: Process -->
+          <div style="flex: 1; background: var(--card); border: 1px solid var(--card-border); padding: 32px 24px; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 16px;">Process</div>
+            <h4 style="font-size: 26px; font-weight: 500; margin: 0 0 16px 0;">Haptica agent</h4>
+            <div style="font-family: var(--font-mono); font-size: 17px; color: var(--gray); line-height: 1.9;">
+              OCR<br>chunking<br>indexing<br>synthesis
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; padding: 0 14px; color: var(--gray); font-size: 32px;">&rarr;</div>
+
+          <!-- Box 3: Organize -->
+          <div style="flex: 1; background: var(--card); border: 1px solid var(--card-border); padding: 32px 24px; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 16px;">Organize</div>
+            <h4 style="font-size: 26px; font-weight: 500; margin: 0 0 16px 0;">Project wikis</h4>
+            <div style="font-family: var(--font-mono); font-size: 17px; color: var(--gray); line-height: 1.9;">
+              per project<br>timeline<br>decisions<br>live
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; padding: 0 14px; color: var(--gray); font-size: 32px;">&rarr;</div>
+
+          <!-- Box 4: Serve -->
+          <div style="flex: 1; background: var(--card); border: 1px solid var(--card-border); padding: 32px 24px; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 16px;">Serve</div>
+            <h4 style="font-size: 26px; font-weight: 500; margin: 0 0 16px 0;">Humans + agents</h4>
+            <div style="font-family: var(--font-mono); font-size: 17px; color: var(--gray); line-height: 1.9;">
+              share links<br>
+              <span style="color: var(--accent);">via MCP</span><br>
+              Slack + Linear<br>
+              auth-gated
+            </div>
+          </div>
+
+        </div>
+
       </div>
       <div class="slide-footer">
         <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
@@ -644,10 +717,10 @@
       <div class="slide-number"><span>03</span> / 13</div>
     </div>
 
-    <!-- Slide 4: How It Works -->
-    <div class="slide" data-slide="4">
+    <!-- Slide 4: How It Works [ARCHIVED — merged into slide 3; swap class back to "slide" to re-enable] -->
+    <div class="slide-archived" data-slide="4">
       <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <h2 style="font-size: 54px; margin-bottom: 60px;">How it works</h2>
+        <h2>How it works</h2>
 
         <!-- Flow diagram -->
         <div style="display: flex; align-items: stretch; gap: 0; max-width: 1200px;">
@@ -726,7 +799,7 @@
     <!-- Slide 5: Demo -->
     <div class="slide" data-slide="5">
       <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 28px;">
-        <h2 style="font-size: 44px; margin-bottom: 0;">One project Haptica tracked.</h2>
+        <h2 style="margin-bottom: 0;">One project Haptica tracked.</h2>
         <img src="guardian-wiki-demo.png" alt="Haptica project wiki" style="max-width: 92%; max-height: 78%; object-fit: contain; border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.08);">
       </div>
       <div class="slide-footer">
@@ -736,13 +809,13 @@
       <div class="slide-number"><span>05</span> / 13</div>
     </div>
 
-    <!-- Slide 6: Product Demo -->
-    <div class="slide" data-slide="6">
+    <!-- Slide 6: Product Demo [ARCHIVED — swap class back to "slide" to re-enable] -->
+    <div class="slide-archived" data-slide="6">
       <div style="display: flex; flex-direction: column; height: 100%;">
         <!-- Header -->
         <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 28px;">
           <div>
-            <h2 style="font-size: 42px; margin-bottom: 4px;">This is one week with Haptica.</h2>
+            <h2 style="margin-bottom: 4px;">This is one week with Haptica.</h2>
           </div>
           <div style="font-family: 'Fira Mono', monospace; font-size: 12px; color: var(--gray); text-align: right;">
             19,300 memories &middot; 4 sources &middot; mar 17&ndash;23
@@ -823,7 +896,7 @@
       <div style="display: flex; flex-direction: column; height: 100%; justify-content: center;">
         <!-- Header -->
         <div style="margin-bottom: 48px;">
-          <h2 style="font-size: 42px; margin-bottom: 8px;">Haptica already knows.</h2>
+          <h2 style="margin-bottom: 8px;">Haptica already knows.</h2>
         </div>
 
         <!-- Before/After terminal mockup -->
@@ -885,42 +958,68 @@
       <div class="slide-number"><span>07</span> / 13</div>
     </div>
 
-    <!-- Slide 8: Business Model -->
-    <div class="slide" data-slide="8">
-      <div style="display: flex; height: 100%; gap: 80px; align-items: center;">
+    <!-- Slide 7b: Market Size -->
+    <div class="slide" data-slide="7b">
+      <div class="center-content" style="gap: 44px;">
+        <h2>Market size.</h2>
+        <p style="font-size: 28px; font-style: italic; color: var(--black); margin: 0;">The AI coding tools category went $0 to $7B+ in three years.</p>
 
-        <!-- Left: the number -->
-        <div style="flex: 0 0 auto;">
-          <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 16px;">Monthly subscription</div>
-          <div style="font-family: var(--font-serif); font-size: 120px; font-weight: 300; line-height: 1; color: var(--black);">$49</div>
-          <div style="font-family: var(--font-mono); font-size: 18px; color: var(--gray); margin-top: 12px;">/month &middot; no free tier</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px; max-width: 1280px;">
+
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); margin-bottom: 18px;">Today</div>
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
+              <li style="font-size: 21px; line-height: 1.5;">Cursor &middot; 1M paying &middot; $2B ARR</li>
+              <li style="font-size: 21px; line-height: 1.5;">Claude Code &middot; $2.5B ARR &middot; <strong style="font-weight: 600;">$20 / seat</strong></li>
+              <li style="font-size: 21px; line-height: 1.5;">Codex &middot; 3M+ weekly active users</li>
+              <li style="font-size: 21px; line-height: 1.5;">Copilot Business &middot; 1.8M+ seats</li>
+            </ul>
+          </div>
+
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); margin-bottom: 18px;">Our wedge</div>
+            <div style="font-family: var(--font-serif); font-size: 72px; font-weight: 300; line-height: 1; margin-bottom: 10px;">$1.2B</div>
+            <p style="font-size: 20px; color: var(--light-gray); margin: 0;">5M+ devs running AI coding agents &middot; at $20 / seat</p>
+          </div>
+
         </div>
 
-        <!-- Right: what you get + why it works -->
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 36px;">
-          <h2 style="font-size: 42px; margin-bottom: 0;">Business Model</h2>
+        <div style="border-top: 1px solid var(--border); padding-top: 24px; max-width: 1280px;">
+          <p style="font-size: 22px; color: var(--black); margin: 0;"><strong style="font-weight: 600;">Next:</strong> every knowledge worker with an AI agent. $24B+ TAM by 2028.</p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        Haptica
+      </div>
+      <div class="slide-number"><span>08</span> / 13</div>
+    </div>
 
-          <!-- What's included -->
-          <div style="display: flex; flex-direction: column; gap: 20px;">
-            <div style="display: flex; gap: 16px; align-items: first baseline;">
-              <span style="font-family: var(--font-mono); font-size: 18px; color: var(--accent); flex-shrink: 0;">01</span>
-              <h4 style="font-size: 26px; font-weight: 500; margin: 0;">Desktop screen capture + OCR</h4>
-            </div>
-            <div style="display: flex; gap: 16px; align-items: first baseline;">
-              <span style="font-family: var(--font-mono); font-size: 18px; color: var(--accent); flex-shrink: 0;">02</span>
-              <h4 style="font-size: 26px; font-weight: 500; margin: 0;">AI memory + chat interface</h4>
-            </div>
-            <div style="display: flex; gap: 16px; align-items: first baseline;">
-              <span style="font-family: var(--font-mono); font-size: 18px; color: var(--accent); flex-shrink: 0;">03</span>
-              <h4 style="font-size: 26px; font-weight: 500; margin: 0;">MCP context API for your AI tools</h4>
-            </div>
+    <!-- Slide 8: Business Model -->
+    <div class="slide" data-slide="8">
+      <div class="center-content" style="gap: 56px;">
+        <h2>Business model</h2>
+
+        <!-- Pricing statement -->
+        <div>
+          <div style="display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; margin-bottom: 18px;">
+            <div style="font-family: var(--font-serif); font-size: 96px; font-weight: 300; line-height: 1;">$20</div>
+            <div style="font-family: var(--font-serif); font-size: 32px; font-style: italic; font-weight: 300;">per seat, per month</div>
           </div>
+          <div style="font-size: 26px; color: var(--black);">3-seat minimum.</div>
+        </div>
 
-          <!-- Retention -->
-          <div style="border-top: 1px solid var(--border); padding-top: 24px;">
-            <p style="font-family: var(--font-mono); font-size: 20px; color: var(--gray); margin: 0;">Context compounds.</p>
-          </div>
+        <!-- Go to market -->
+        <ul class="bullet-list" style="margin-top: 0; max-width: 1100px;">
+          <li>Dev-first. Initial motion: founder-to-founder outreach.</li>
+          <li>Built for devs. Sold to teams.</li>
+        </ul>
 
+        <!-- Current pilot -->
+        <div style="display: flex; align-items: center; gap: 32px; padding-top: 28px; border-top: 1px solid var(--border); max-width: 1100px; flex-wrap: wrap;">
+          <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); flex-shrink: 0;">Current pilot</div>
+          <img src="pandatron-logo.svg" alt="Pandatron" style="height: 40px; width: auto;">
+          <div style="font-size: 22px; color: var(--black);">30-day pilot, engineering team</div>
         </div>
       </div>
       <div class="slide-footer">
@@ -932,29 +1031,29 @@
 
     <!-- Slide 9: Go-to-Market -->
     <div class="slide" data-slide="9">
-      <div style="display: flex; flex-direction: column; height: 100%; justify-content: center;">
-        <h2 style="font-size: 42px; margin-bottom: 48px;">Start with the people who feel this pain most.</h2>
+      <div style="display: flex; flex-direction: column; height: 100%; justify-content: center; gap: 44px;">
+        <h2 style="margin: 0;">Start with devs running agentic coding agents.</h2>
 
         <!-- Three-stage progression -->
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
 
           <!-- Wedge -->
           <div style="background: #000; color: #fcfcfc; padding: 28px 24px; display: flex; flex-direction: column;">
-            <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px;">Wedge</div>
+            <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px;">Wedge</div>
             <div style="font-family: var(--font-serif); font-size: 36px; font-weight: 300; margin-bottom: 16px;">100&ndash;500</div>
-            <h4 style="font-size: 22px; font-weight: 500; color: #fcfcfc; margin: 0;">Heavy agentic terminal users</h4>
+            <h4 style="font-size: 22px; font-weight: 500; color: #fcfcfc; margin: 0;">Engineers running Claude Code, Cursor, and Codex inside company teams.</h4>
           </div>
 
           <!-- Bridge -->
           <div style="background: var(--card); border: 1px solid var(--card-border); padding: 28px 24px; display: flex; flex-direction: column;">
-            <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px;">Bridge</div>
+            <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px;">Bridge</div>
             <div style="font-family: var(--font-serif); font-size: 36px; font-weight: 300; margin-bottom: 16px;">500&ndash;5,000</div>
             <h4 style="font-size: 22px; font-weight: 500; margin: 0;">High-context knowledge workers</h4>
           </div>
 
           <!-- Beyond -->
           <div style="background: var(--card); border: 1px solid var(--card-border); padding: 28px 24px; display: flex; flex-direction: column;">
-            <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px;">Beyond</div>
+            <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px;">Beyond</div>
             <div style="font-family: var(--font-serif); font-size: 36px; font-weight: 300; margin-bottom: 16px;">5,000+</div>
             <h4 style="font-size: 22px; font-weight: 500; margin: 0;">Phone + mic: full-context capture across every device</h4>
           </div>
@@ -971,19 +1070,19 @@
     <!-- Slide 10: Why Now -->
     <div class="slide" data-slide="10">
       <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <h2 style="font-size: 54px; margin-bottom: 60px;">Why now</h2>
+        <h2 style="margin-bottom: 48px;">Why now</h2>
         <div style="display: flex; flex-direction: column; gap: 36px;">
           <div style="display: flex; gap: 20px; align-items: first baseline;">
-            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">01</span>
-            <p style="font-size: 26px; line-height: 1.6;">AI is very capable.</p>
+            <span style="font-family: 'Fira Mono', monospace; font-size: 16px; color: var(--accent); flex-shrink: 0;">01</span>
+            <p style="font-size: 36px; line-height: 1.5;">AI is very capable.</p>
           </div>
           <div style="display: flex; gap: 20px; align-items: first baseline;">
-            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">02</span>
-            <p style="font-size: 26px; line-height: 1.6;">Users are delegating real work to AI agents.</p>
+            <span style="font-family: 'Fira Mono', monospace; font-size: 16px; color: var(--accent); flex-shrink: 0;">02</span>
+            <p style="font-size: 36px; line-height: 1.5;">Users are delegating real work to AI agents.</p>
           </div>
           <div style="display: flex; gap: 20px; align-items: first baseline;">
-            <span style="font-family: 'Fira Mono', monospace; font-size: 14px; color: var(--accent); flex-shrink: 0;">03</span>
-            <p style="font-size: 26px; line-height: 1.6;">Context is the limiting factor.</p>
+            <span style="font-family: 'Fira Mono', monospace; font-size: 16px; color: var(--accent); flex-shrink: 0;">03</span>
+            <p style="font-size: 36px; line-height: 1.5;">Context is the limiting factor.</p>
           </div>
         </div>
       </div>
@@ -994,11 +1093,30 @@
       <div class="slide-number"><span>10</span> / 13</div>
     </div>
 
+    <!-- Slide 10b: How we win -->
+    <div class="slide" data-slide="10b">
+      <div class="center-content" style="gap: 40px;">
+        <h2>How we win.</h2>
+        <p style="font-size: 28px; font-style: italic; color: var(--black); max-width: 1200px; margin: 0;">Most AI products ask you to change your workflow. Ours asks for nothing.</p>
+
+        <ul class="bullet-list" style="margin-top: 0; max-width: 1200px;">
+          <li>One command to install.</li>
+          <li>Works through the tools you already use: Claude Code, Cursor, ChatGPT. MCP-native.</li>
+          <li>Context compounds daily.</li>
+        </ul>
+      </div>
+      <div class="slide-footer">
+        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        Haptica
+      </div>
+      <div class="slide-number"><span>11</span> / 13</div>
+    </div>
+
     <!-- Slide 11: Core Team -->
     <div class="slide" data-slide="11">
       <div class="center-content">
         <div class="team-section">
-          <h2 style="font-size: 54px;">Haptica Team</h2>
+          <h2>Haptica Team</h2>
           <div class="team-row">
             <div style="display: flex; flex-direction: column; align-items: center; max-width: 390px;">
               <img src="paul-han.png" alt="Paul Han" class="team-avatar" style="object-fit: cover; object-position: center center;">
@@ -1024,37 +1142,41 @@
 
     <!-- Slide 12: The Ask -->
     <div class="slide" data-slide="12">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; height: 100%; padding: 80px;">
-        <div>
-          <div style="font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 18px;">PRE-SEED ROUND</div>
-          <h2 style="font-size: 54px; margin-bottom: 16px;">$500K</h2>
-          <p style="font-size: 22px; color: var(--gray); margin-bottom: 24px;">$10M valuation cap &middot; Standard YC SAFE</p>
-          <div style="margin-bottom: 48px;">
-            <a href="https://na4.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=26afc2d4-89ff-4b15-89ac-6c13b5470dae&env=na4&acct=3a011185-44cc-4024-b13f-2a81d2cbaa3f&v=2" target="_blank" style="display: inline-block; font-family: var(--font-mono); font-size: 16px; font-weight: 600; letter-spacing: 0.05em; color: #ffffff; background: #000000; border: 1px solid #000000; padding: 12px 24px; text-decoration: none;">SIGN SAFE &rarr;</a>
-            <div style="font-family: var(--font-mono); font-size: 14px; color: var(--gray); margin-top: 10px; letter-spacing: 0.05em;">haptica.ai/safe</div>
-          </div>
+      <div style="display: flex; flex-direction: column; justify-content: center; height: 100%; gap: 56px;">
 
-          <h4 style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 20px;">USE OF FUNDS</h4>
-          <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 48px;">
-            <div style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
-              <span>Infrastructure &amp; compute (OCR, processing, MCP scaling)</span>
-            </div>
-            <div style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
-              <span>User growth &amp; developer community</span>
-            </div>
-            <div style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
-              <span>Product development (Windows, new modalities)</span>
-            </div>
+        <!-- Hero: the ask -->
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px;">The ask</div>
+          <div style="display: flex; align-items: baseline; gap: 32px; flex-wrap: wrap; margin-bottom: 14px;">
+            <div style="font-family: var(--font-serif); font-size: 112px; font-weight: 300; line-height: 1;">$1M</div>
+            <div style="font-family: var(--font-serif); font-size: 32px; font-style: italic; font-weight: 300;">$15M cap &middot; Standard YC SAFE</div>
           </div>
+          <a href="https://na4.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=26afc2d4-89ff-4b15-89ac-6c13b5470dae&env=na4&acct=3a011185-44cc-4024-b13f-2a81d2cbaa3f&v=2" target="_blank" style="display: inline-block; font-family: var(--font-mono); font-size: 20px; font-weight: 600; letter-spacing: 0.05em; color: #ffffff; background: #000000; border: 1px solid #000000; padding: 16px 32px; text-decoration: none; margin-top: 22px;">SIGN SAFE &rarr;</a>
+          <div style="font-family: var(--font-mono); font-size: 16px; color: var(--gray); margin-top: 12px; letter-spacing: 0.05em;">haptica.ai/safe</div>
         </div>
 
-        <div>
-          <h4 style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 24px;">MILESTONES</h4>
-          <div style="display: flex; flex-direction: column; gap: 18px;">
-            <div style="font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 14px;">100 daily active users</div>
-            <div style="font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 14px;">Published context benchmark</div>
-            <div style="font-size: 20px;">$1M ARR</div>
+        <!-- Two columns: use of funds + milestones -->
+        <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: start;">
+
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); margin-bottom: 22px;">Use of funds</div>
+            <div style="display: flex; flex-direction: column;">
+              <div style="font-size: 22px; border-bottom: 1px solid var(--border); padding: 14px 0;">First technical hire: senior engineer</div>
+              <div style="font-size: 22px; border-bottom: 1px solid var(--border); padding: 14px 0;">Inference &amp; infrastructure (OCR, wiki synthesis, MCP hosting)</div>
+              <div style="font-size: 22px; border-bottom: 1px solid var(--border); padding: 14px 0;">Developer community, pilots, outreach</div>
+              <div style="font-size: 22px; border-bottom: 1px solid var(--border); padding: 14px 0;">Product (new integrations, sharing, Windows)</div>
+            </div>
           </div>
+
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); margin-bottom: 22px;">Milestones</div>
+            <div style="display: flex; flex-direction: column;">
+              <div style="font-size: 24px; border-bottom: 1px solid var(--border); padding: 14px 0;">100 daily active users</div>
+              <div style="font-size: 24px; border-bottom: 1px solid var(--border); padding: 14px 0;">Published context benchmark</div>
+              <div style="font-size: 24px; border-bottom: 1px solid var(--border); padding: 14px 0;">$1M ARR</div>
+            </div>
+          </div>
+
         </div>
       </div>
       <div class="slide-footer">
@@ -1082,6 +1204,16 @@
   <div class="nav-hint">← → ARROW KEYS TO NAVIGATE</div>
 
   <script>
+    // Auto-renumber visible slide labels (respects .slide-archived exclusions)
+    (() => {
+      const visible = document.querySelectorAll('.slide');
+      const total = visible.length;
+      visible.forEach((slide, i) => {
+        const numEl = slide.querySelector('.slide-number');
+        if (numEl) numEl.innerHTML = `<span>${String(i+1).padStart(2,'0')}</span> / ${total}`;
+      });
+    })();
+
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
 
@@ -1091,6 +1223,15 @@
       });
       currentSlide = index;
     }
+
+    // Deep-link support: ?slide=N jumps to slide N on load
+    (() => {
+      const params = new URLSearchParams(location.search);
+      const n = parseInt(params.get('slide'), 10);
+      if (Number.isFinite(n) && n >= 1 && n <= slides.length) {
+        showSlide(n - 1);
+      }
+    })();
 
     function nextSlide() {
       if (currentSlide < slides.length - 1) {
