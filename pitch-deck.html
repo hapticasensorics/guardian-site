@@ -617,13 +617,13 @@
     <div class="slide active" data-slide="1">
       <div class="center-content" style="align-items: center; text-align: center;">
         <div class="logo" style="justify-content: center;">
-          <img src="owl-logo.png" alt="Haptica owl" style="width: 80px; height: 80px; object-fit: contain;">
+          <img src="fish-logo.png" alt="Haptica fish" style="width: 80px; height: 80px; object-fit: contain;">
           <span class="logo-text">Haptica</span>
         </div>
         <h1>Haptica:<br>Own Your Context</h1>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>01</span> / 13</div>
@@ -640,7 +640,7 @@
         </ul>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>02</span> / 13</div>
@@ -710,7 +710,7 @@
 
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>03</span> / 13</div>
@@ -789,7 +789,7 @@
 
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>04</span> / 13</div>
@@ -797,18 +797,38 @@
 
     <!-- Slide 5: Demo -->
     <div class="slide" data-slide="5">
-      <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 18px;">
-        <div style="font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray);">Product &middot; Shareable Link</div>
-        <h2 style="margin-bottom: 0;">One project Haptica tracked.</h2>
-        <img src="guardian-wiki-demo.png" alt="Haptica project wiki" style="max-width: 92%; max-height: 70%; object-fit: contain; border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.08);">
-        <div style="font-family: var(--font-mono); font-size: 15px; color: var(--gray); display: flex; align-items: center; gap: 12px;">
-          <a href="#" style="color: var(--black); text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.25); padding-bottom: 2px;">haptica.ai/p/demo</a>
-          <span>&middot;</span>
-          <span>paste in your AI — ask it anything about this project</span>
+      <div style="height: 100%; display: flex; flex-direction: column;">
+        <h2 style="text-align: center; margin-bottom: 0;">One project Haptica tracked.</h2>
+
+        <!-- Two-up: reader view | agent view -->
+        <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; min-height: 0;">
+
+          <div style="display: flex; flex-direction: column; background: #ffffff; border: 1px solid var(--border); box-shadow: 0 12px 36px rgba(0,0,0,0.06); overflow: hidden; min-height: 0;">
+            <div style="font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--gray); padding: 14px 20px; border-bottom: 1px solid var(--border); background: #fafafa; display: flex; align-items: center; gap: 12px;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--black);"></span>
+              Reader view &mdash; for humans
+            </div>
+            <img src="wiki-reader-view.png" alt="Reader view of the project wiki" style="width: 100%; height: 100%; object-fit: contain; object-position: top center; background: #ffffff; display: block; min-height: 0;">
+          </div>
+
+          <div style="display: flex; flex-direction: column; background: #ffffff; border: 1px solid var(--border); box-shadow: 0 12px 36px rgba(0,0,0,0.06); overflow: hidden; min-height: 0;">
+            <div style="font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--gray); padding: 14px 20px; border-bottom: 1px solid var(--border); background: #fafafa; display: flex; align-items: center; gap: 12px;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #1DFFE5; box-shadow: 0 0 0 2px rgba(29, 255, 229, 0.2);"></span>
+              Agent view &mdash; for AI
+            </div>
+            <img src="wiki-agent-view.png" alt="Agent view of the project wiki in raw markdown" style="width: 100%; height: 100%; object-fit: contain; object-position: top center; background: #1a1a1a; display: block; min-height: 0;">
+          </div>
+
+        </div>
+
+        <div style="margin-top: 28px; display: flex; justify-content: center; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: 18px; color: var(--gray);">
+          <a href="#" style="color: var(--black); text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.25); padding-bottom: 2px; font-weight: 500;">haptica.ai/p/demo</a>
+          <span style="color: var(--border);">&middot;</span>
+          <span>paste in your AI &mdash; ask it anything about this project</span>
         </div>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>04</span> / 13</div>
@@ -890,7 +910,7 @@
         </div>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>06</span> / 13</div>
@@ -957,7 +977,7 @@
         </div>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>05</span> / 13</div>
@@ -965,36 +985,48 @@
 
     <!-- Slide 7b: Market Size -->
     <div class="slide" data-slide="7b">
-      <div class="center-content" style="gap: 44px;">
+      <div class="center-content" style="gap: 32px;">
         <h2>Market size.</h2>
-        <p style="font-size: 28px; font-style: italic; color: var(--black); margin: 0;">The AI coding tools category went $0 to $7B+ in three years.</p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px; max-width: 1280px;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; max-width: 1280px; width: 100%; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 28px 0;">
 
-          <div>
-            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); margin-bottom: 18px;">Today</div>
-            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
-              <li style="font-size: 21px; line-height: 1.5;">Cursor · 1M paying · $2B ARR</li>
-              <li style="font-size: 21px; line-height: 1.5;">Claude Code · $2.5B ARR · <strong style="font-weight: 600;">$20 / seat</strong></li>
-              <li style="font-size: 21px; line-height: 1.5;">Codex · 3M+ weekly active users</li>
-              <li style="font-size: 21px; line-height: 1.5;">Copilot Business · 1.8M+ seats</li>
-            </ul>
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; border-right: 1px solid var(--border); padding: 0 14px;">
+            <div style="font-family: var(--font-serif); font-size: 72px; font-weight: 300; line-height: 1; color: var(--black); margin-bottom: 14px;">$20</div>
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-bottom: 12px;">Entry</div>
+            <div style="font-size: 24px; color: var(--body); line-height: 1.45;">ChatGPT Plus<br>Claude Pro<br>Copilot Business</div>
           </div>
 
-          <div>
-            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); margin-bottom: 18px;">Our wedge</div>
-            <div style="font-family: var(--font-serif); font-size: 72px; font-weight: 300; line-height: 1; margin-bottom: 10px;">$1.2B</div>
-            <p style="font-size: 20px; color: var(--light-gray); margin: 0;">5M+ devs running AI coding agents · at $20 / seat</p>
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; border-right: 1px solid var(--border); padding: 0 14px;">
+            <div style="font-family: var(--font-serif); font-size: 72px; font-weight: 300; line-height: 1; color: var(--black); margin-bottom: 14px;">$200</div>
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-bottom: 12px;">Agentic tier</div>
+            <div style="font-size: 24px; color: var(--body); line-height: 1.45;">Cursor Ultra<br>Claude Max<br>ChatGPT Pro</div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; border-right: 1px solid var(--border); padding: 0 14px;">
+            <div style="font-family: var(--font-serif); font-size: 72px; font-weight: 300; line-height: 1; color: var(--black); margin-bottom: 14px;">$1k</div>
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-bottom: 12px;">Heavy</div>
+            <div style="font-size: 24px; color: var(--body); line-height: 1.45;">Daily agentic users<br>API overages</div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 14px;">
+            <div style="font-family: var(--font-serif); font-size: 72px; font-weight: 300; line-height: 1; color: var(--black); margin-bottom: 14px;">$5k</div>
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-bottom: 12px;">Power</div>
+            <div style="font-size: 24px; color: var(--body); line-height: 1.45;">Parallel agents<br>24/7 runners</div>
           </div>
 
         </div>
 
-        <div style="border-top: 1px solid var(--border); padding-top: 24px; max-width: 1280px;">
-          <p style="font-size: 22px; color: var(--black); margin: 0;"><strong style="font-weight: 600;">Next:</strong> every knowledge worker with an AI agent. $24B+ TAM by 2028.</p>
+        <div style="max-width: 1280px; width: 100%;">
+          <p style="font-size: 36px; color: var(--black); margin: 0 0 10px; line-height: 1.35; font-weight: 300;">5M devs &times; $200 blended &rarr; <strong style="font-weight: 500;">$12B today.</strong></p>
+          <p style="font-size: 22px; font-style: italic; color: var(--gray); margin: 0; line-height: 1.5;">Power users pull the average up &mdash; $5k / month is not rare.</p>
+        </div>
+
+        <div style="border-top: 1px solid var(--border); padding-top: 22px; max-width: 1280px; width: 100%;">
+          <p style="font-size: 28px; color: var(--black); margin: 0; line-height: 1.4;"><strong style="font-weight: 600;">Next:</strong> 100M knowledge workers at agentic prices. <strong style="font-weight: 600;">$240B+ TAM by 2028.</strong></p>
         </div>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>06</span> / 13</div>
@@ -1008,10 +1040,11 @@
         <!-- Pricing statement -->
         <div>
           <div style="display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; margin-bottom: 18px;">
-            <div style="font-family: var(--font-serif); font-size: 96px; font-weight: 300; line-height: 1;">$20</div>
+            <div style="font-family: var(--font-serif); font-size: 96px; font-weight: 300; line-height: 1;">$40</div>
             <div style="font-family: var(--font-serif); font-size: 32px; font-style: italic; font-weight: 300;">per seat, per month</div>
           </div>
-          <div style="font-size: 26px; color: var(--black);">3-seat minimum.</div>
+          <div style="font-size: 26px; color: var(--black); margin-bottom: 6px;">3-seat minimum.</div>
+          <div style="font-size: 26px; font-style: italic; color: var(--gray);">Fits on a credit card.</div>
         </div>
 
         <!-- Go to market -->
@@ -1028,7 +1061,7 @@
         </div>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>07</span> / 13</div>
@@ -1066,7 +1099,7 @@
         </div>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>08</span> / 13</div>
@@ -1092,7 +1125,7 @@
         </div>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>09</span> / 13</div>
@@ -1111,7 +1144,7 @@
         </ul>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>10</span> / 13</div>
@@ -1139,7 +1172,7 @@
         </div>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>11</span> / 13</div>
@@ -1185,7 +1218,7 @@
         </div>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>12</span> / 13</div>
@@ -1198,7 +1231,7 @@
         <div class="mono" style="margin-top: 32px; font-size: 18px; color: var(--teal); letter-spacing: 0.05em;">paul@haptica.ai &nbsp;|&nbsp; jackieoliver@haptica.ai</div>
       </div>
       <div class="slide-footer">
-        <img src="owl-logo.png" alt="Haptica owl" style="width: 36px; height: 36px; object-fit: contain;">
+        <img src="fish-logo.png" alt="Haptica fish" style="width: 36px; height: 36px; object-fit: contain;">
         Haptica
       </div>
       <div class="slide-number"><span>13</span> / 13</div>
