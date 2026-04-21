@@ -29,7 +29,11 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        # --legacy-peer-deps: @sveltejs/vite-plugin-svelte@7.0.0 declares
+        # peer vite@^8 but the project uses vite@7. Local installs work
+        # because npm's default install resolver is more lenient than `npm
+        # ci`. Until a version bump aligns the peers, accept the resolution.
+        run: npm ci --legacy-peer-deps
 
       - name: Build site
         run: npm run build
