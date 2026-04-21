@@ -1,0 +1,9 @@
+# Reverse-proxy /p/demo/* to the 1context-demo Pages project. Lets us
+# show the wiki at haptica.ai/p/demo/ without grafting it into the
+# SvelteKit build (the wiki has its own assets, anchor links, .md
+# companions, etc — far cleaner kept as a self-contained Pages project).
+# 200 = rewrite (URL bar stays on haptica.ai), 301 = redirect.
+
+/p/demo            /p/demo/                                  301
+/p/demo/           https://1context-demo.pages.dev/          200
+/p/demo/*          https://1context-demo.pages.dev/:splat    200
