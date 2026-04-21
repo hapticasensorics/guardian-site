@@ -1,9 +1,6 @@
-# Reverse-proxy /p/demo/* to the 1context-demo Pages project. Lets us
-# show the wiki at haptica.ai/p/demo/ without grafting it into the
-# SvelteKit build (the wiki has its own assets, anchor links, .md
-# companions, etc — far cleaner kept as a self-contained Pages project).
-# 200 = rewrite (URL bar stays on haptica.ai), 301 = redirect.
-
-/p/demo            /p/demo/                                  301
-/p/demo/           https://1context-demo.pages.dev/          200
-/p/demo/*          https://1context-demo.pages.dev/:splat    200
+# /p/demo/* is proxied by functions/p/demo/[[path]].ts to the
+# 1context-demo Pages project — see that file for the rationale.
+# Pages Functions take precedence over static files, so this is just
+# a safety net for the bare /p/demo path that some browsers may not
+# auto-trail-slash before hitting the function.
+/p/demo  /p/demo/  301
