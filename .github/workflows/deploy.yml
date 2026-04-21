@@ -17,6 +17,11 @@ jobs:
     permissions:
       contents: read
       deployments: write
+    # Apply legacy-peer-deps to every npm invocation in the job, including
+    # the implicit one inside cloudflare/wrangler-action when it bootstraps
+    # wrangler. See the install step below for the full peer-dep rationale.
+    env:
+      NPM_CONFIG_LEGACY_PEER_DEPS: "true"
 
     steps:
       - name: Checkout
