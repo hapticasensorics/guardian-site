@@ -49,7 +49,14 @@ function maybeRewrite(value: string | null): string | null {
 
 export const onRequest: PagesFunction = async (context) => {
   const inUrl = new URL(context.request.url);
-  const upstreamPath = inUrl.pathname.replace(/^\/p\/demo/, '') || '/';
+  let upstreamPath = inUrl.pathname.replace(/^\/p\/demo/, '') || '/';
+  // Demo entry point is the 1Context project page, not the Einstein
+  // wiki sample that the upstream's index.html happens to contain.
+  // Remap the bare slash (and /index.html) so visitors landing at
+  // haptica.ai/p/demo/ see the project overview without a redirect.
+  if (upstreamPath === '/' || upstreamPath === '/index.html') {
+    upstreamPath = '/1context-project.html';
+  }
   const upstreamUrl = UPSTREAM + upstreamPath + inUrl.search;
 
   const init: RequestInit = {
