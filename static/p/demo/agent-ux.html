@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Agent UX (AX) — 1Context</title>
+
+  <link rel="alternate" type="text/markdown" href="/p/demo/agent-ux.md">
+
+  <meta property="og:title" content="Agent UX (AX) — how 1Context presents itself to AI agents">
+  <meta property="og:type"  content="article">
+  <meta property="og:description" content="The discipline of designing a website's surfaces so AI agents that fetch its URLs can read, handoff, and use the content effectively without being taught — both the philosophy and the v0.1 implementation spec.">
+  <meta name="description" content="The discipline of designing a website's surfaces so AI agents that fetch its URLs can read, handoff, and use the content effectively without being taught — both the philosophy and the v0.1 implementation spec.">
+
+  <script type="module" crossorigin src="/p/demo/assets/agentUx-50rU9thO.js"></script>
+  <link rel="modulepreload" crossorigin href="/p/demo/assets/theme-CalbiAX5.js">
+  <link rel="modulepreload" crossorigin href="/p/demo/assets/main-C2RK5Mq3.js">
+  <link rel="stylesheet" crossorigin href="/p/demo/assets/theme-DrAkLUrl.css">
+</head>
+<body>
+  <div class="opctx-visibility-bar" data-tier="public" aria-label="Public — internet-readable"></div>
+  <div class="opctx-progress-bar" aria-hidden="true"></div>
+
+  <header class="opctx-header">
+    <a href="/p/demo/" class="opctx-header-logo">1Context</a>
+    <div class="opctx-header-search">
+      <input type="search" placeholder="Search pages, books, tags…" aria-label="Search">
+    </div>
+    <div class="opctx-header-actions">
+      <span class="opctx-tier-badge" data-tier="public" title="Anyone with the URL can read">Public</span>
+    </div>
+  </header>
+
+  <div class="opctx-layout">
+    <nav class="opctx-toc" aria-label="Table of contents">
+      <span class="opctx-toc-label">Contents</span>
+      <ol>
+        <li><a href="#What_is_Agent_UX">What is Agent UX</a></li>
+        <li><a href="#What_to_call_this">What to call this</a></li>
+        <li><a href="#Why_it_matters">Why it matters</a><ul>
+          <li class="is-sub"><a href="#The_summarizer_bottleneck">The summarizer bottleneck</a></li>
+          <li class="is-sub"><a href="#Three_classes_of_agent">Three classes of agent</a></li>
+        </ul></li>
+        <li><a href="#Design_principles">Design principles</a><ul>
+          <li class="is-sub"><a href="#Protocol_layer_or_human">Protocol layer or human, never LLM-via-content</a></li>
+          <li class="is-sub"><a href="#Informational_not_imperative">Informational, not imperative</a></li>
+          <li class="is-sub"><a href="#Many_small_signals">Many small signals, no big guarantee</a></li>
+          <li class="is-sub"><a href="#Lossless_path_is_MCP">The lossless path is MCP</a></li>
+        </ul></li>
+        <li><a href="#The_layered_stack">The layered stack</a><ul>
+          <li class="is-sub"><a href="#Layer_A">Layer A — HTTP Link header</a></li>
+          <li class="is-sub"><a href="#Layer_B">Layer B — link rel=alternate</a></li>
+          <li class="is-sub"><a href="#Layer_C">Layer C — .md URL convention</a></li>
+          <li class="is-sub"><a href="#Layer_D">Layer D — Sec-Fetch heuristic</a></li>
+          <li class="is-sub"><a href="#Layer_E">Layer E — informational note</a></li>
+          <li class="is-sub"><a href="#Layer_F">Layer F — frontmatter alternates</a></li>
+          <li class="is-sub"><a href="#Layer_G">Layer G — Reader/Agent toggle</a></li>
+          <li class="is-sub"><a href="#Layer_H">Layer H — share menu</a></li>
+          <li class="is-sub"><a href="#Layer_I">Layer I — llms.txt + llms-full.txt + docs-index.json</a></li>
+          <li class="is-sub"><a href="#Layer_J">Layer J — MCP server</a></li>
+        </ul></li>
+        <li><a href="#Anti_patterns">Anti-patterns we avoid</a></li>
+        <li><a href="#Empirical_findings">Empirical findings</a></li>
+        <li><a href="#Marketing_story">Marketing story</a></li>
+        <li><a href="#Implementation_spec">Implementation spec (v0.1)</a><ul>
+          <li class="is-sub"><a href="#Design_goals">Design goals — five reading modes</a></li>
+          <li class="is-sub"><a href="#URL_layout">URL layout</a></li>
+          <li class="is-sub"><a href="#Content_tiers">Content tiers (A–E)</a></li>
+          <li class="is-sub"><a href="#Frontmatter_schema">Page frontmatter schema</a></li>
+          <li class="is-sub"><a href="#Markdown_twin_rules">Markdown twin rules</a></li>
+          <li class="is-sub"><a href="#llms_txt_spec">llms.txt spec</a></li>
+          <li class="is-sub"><a href="#llms_full_txt_spec">llms-full.txt generation spec</a></li>
+          <li class="is-sub"><a href="#docs_index_json_spec">docs-index.json spec</a></li>
+          <li class="is-sub"><a href="#Auth_and_secrets">Auth and secrets</a></li>
+          <li class="is-sub"><a href="#Imported_corpus_policy">Imported / reference corpus policy</a></li>
+          <li class="is-sub"><a href="#Change_management">Change management and supersession</a></li>
+          <li class="is-sub"><a href="#Build_pipeline">Build pipeline and validation</a></li>
+          <li class="is-sub"><a href="#HTTP_behavior">HTTP behavior</a></li>
+        </ul></li>
+        <li><a href="#Phased_rollout">Phased rollout</a></li>
+        <li><a href="#Implementation_status">Implementation status</a></li>
+        <li><a href="#Open_decisions">Open decisions</a></li>
+        <li><a href="#See_also">See also</a></li>
+        <li><a href="#References">References</a></li>
+      </ol>
+    </nav>
+
+    <main class="opctx-main">
+      <article class="opctx-article">
+        <h1>Agent UX (AX)</h1>
+        <p class="opctx-subtitle">How 1Context presents itself to AI agents · Philosophy + implementation spec v0.1 · Updated 2026-04-20</p>
+
+        <p>
+          <strong>Agent UX</strong> — abbreviated <strong>AX</strong>, parallel to UX — is
+          the discipline of designing a website's surfaces so that AI agents who fetch its
+          URLs can read, handoff, and act on the content without being taught about the
+          site specifically. It is to LLM-driven web consumers what UX is to humans, and
+          it is what 1Context invests in deliberately.
+        </p>
+        <p>
+          This page is the canonical reference for AX in 1Context. It covers the
+          philosophy and design principles, the layered stack of tactics we use, the
+          anti-patterns we avoid, the empirical findings that shape our priorities, and
+          the v0.1 implementation spec (URL layout, content tiers, frontmatter schemas,
+          generated discovery files, build validation, HTTP behavior). One page,
+          everything in one place.
+        </p>
+
+        <h2 id="What_is_Agent_UX">What is Agent UX</h2>
+        <p>
+          Agent UX is everything that happens between an agent receiving a URL and the
+          agent doing something useful with the content behind it. That includes: which
+          format the response is served in, whether the agent can discover that an
+          alternative format exists, how token-efficiently the response packs the actual
+          information, whether the agent can hand the content off to another agent
+          without loss, and what affordances the human sharer has to pre-select the right
+          format for the recipient.
+        </p>
+        <p>
+          Crucially, AX is <em>not</em> SEO for AI. SEO-like disciplines (AEO, GEO, LLMO,
+          AI-SEO) are about being found by crawlers and surfaced in answer engines. AX is
+          about what happens <em>after</em> the agent has the URL — the
+          comprehensibility, efficiency, and lossless-handoff properties of the response
+          itself. The two are complementary; this article is only about the latter.
+        </p>
+
+        <h2 id="What_to_call_this">What to call this</h2>
+        <p>
+          The field hasn't fully settled on a name. The candidates we considered:
+        </p>
+        <ul>
+          <li><strong>Agent UX (AX)</strong> — parallel to UX, captures the breadth (reading + handoff + UI affordances), memorable abbreviation. Our pick.</li>
+          <li><strong>Agent-readability</strong> — narrow but clean, parallel to accessibility (a11y). Good for the subset focused on parsing/comprehension.</li>
+          <li><strong>Machine-readable surface</strong> — formal and unambiguous; less catchy.</li>
+          <li><strong>Agent affordances</strong> — captures the design rationale (the page provides affordances; the agent uses them); a bit abstract for a project name.</li>
+          <li><strong>Agentic IO</strong>, <strong>AIO</strong> — too jargony, easy to confuse with "all-in-one".</li>
+        </ul>
+        <p>
+          We use <strong>Agent UX</strong> as the section title and <strong>AX</strong> as
+          the abbreviation. We use <em>agent-readability</em> when we mean specifically
+          "can an agent parse this," which is a subset of AX.
+        </p>
+
+        <h2 id="Why_it_matters">Why it matters</h2>
+
+        <h3 id="The_summarizer_bottleneck">The summarizer bottleneck</h3>
+        <p>
+          We ran a controlled experiment (<code>tools/build-format-experiment.py</code> +
+          four parallel Opus subagents fetching four format variants of the same
+          Albert Einstein article through a Cloudflare tunnel) and discovered something
+          uncomfortable: <em>the format on the wire is approximately invisible to the
+          calling LLM through Claude's WebFetch tool</em>.
+        </p>
+        <p>
+          All four variants — 407KB full HTML, 405KB HTML with
+          <code>&lt;link rel=alternate&gt;</code>, 403KB stripped HTML (just
+          <code>&lt;article&gt;</code>), and 338KB pure markdown — produced summaries of
+          200-450 tokens. None of the four agents could answer "in what year did
+          Einstein emigrate to the United States?" from their summary, despite the
+          answer (1933) being plainly in the source. WebFetch (and most equivalent
+          tools) runs every response through a small-model summarizer before handing it
+          to the calling LLM, and the summarizer drops specifics regardless of input
+          format.
+        </p>
+        <p>
+          This means our intuition — "if we just serve clean markdown, agents will get
+          a smaller, more useful response" — is partially wrong for the largest class of
+          agent consumer. Markdown helps, but only marginally. The summarizer is the
+          bottleneck.
+        </p>
+
+        <h3 id="Three_classes_of_agent">Three classes of agent</h3>
+        <p>
+          Consequently, AX has to design for three different agent classes that each
+          benefit from different things:
+        </p>
+        <ol>
+          <li>
+            <strong>Summarizing fetchers</strong> (Claude WebFetch, ChatGPT browsing,
+            Perplexity, most agent web tools): get a paraphrased summary regardless of
+            format. Source format barely matters; structural cleanliness helps the
+            summarizer pick up the right things.
+          </li>
+          <li>
+            <strong>Raw fetchers</strong> (Claude Code in Bash mode, Cursor terminal
+            mode, custom curl-based agents, RAG pipelines): receive the full bytes,
+            chunk and process directly. Format on the wire matters hugely; markdown
+            saves real tokens; <code>llms-full.txt</code> as a single corpus blob is a
+            qualitatively different capability.
+          </li>
+          <li>
+            <strong>Typed-protocol consumers</strong> (MCP-aware agents): bypass HTTP
+            entirely and call typed tools. Format becomes irrelevant; the contract is
+            the schema. Lossless handoff is the win.
+          </li>
+        </ol>
+        <p>
+          1Context invests in all three because they have non-overlapping audiences and
+          non-overlapping costs. The URL stack covers (1) and (2); the planned MCP
+          server covers (3).
+        </p>
+
+        <h2 id="Design_principles">Design principles</h2>
+
+        <h3 id="Protocol_layer_or_human">Protocol layer or human, never LLM-via-content</h3>
+        <p>
+          Agents are hardened against prompt injection. Anything in fetched content that
+          <em>tells</em> an agent what to do is treated as untrusted and ignored
+          (correctly). So we never put imperatives in the page. Tactics that survive
+          injection defenses share a common structural property: the signal lives in
+          the protocol layer (HTTP headers, URL conventions, standardized metadata
+          locations) or it's an affordance to the human sharer (the human picks the
+          right URL; the agent never has to be persuaded). Page <em>content</em> never
+          tries to instruct the agent.
+        </p>
+
+        <h3 id="Informational_not_imperative">Informational, not imperative</h3>
+        <p>
+          A short note in the page that <em>describes</em> an alternate as a
+          <strong>fact</strong> is not prompt injection — it's data. The phrasing
+          matters critically: <em>"AI agents should fetch /x.md"</em> is imperative
+          (will be flagged as injection); <em>"The markdown source is at /x.md"</em> is
+          informational (safe). Hardened agents read informational notes as data they
+          can act on (or not) based on their own judgment and the user's intent. We're
+          not trying to override the agent — we're describing the situation.
+        </p>
+
+        <h3 id="Many_small_signals">Many small signals, no big guarantee</h3>
+        <p>
+          No single tactic forces agents to the right path. Each layer can fail. The
+          combination is the value. A good signal stack uses HTTP headers + HTML head
+          metadata + URL conventions + an in-page informational note + frontmatter
+          structured metadata + server-side smart defaults + a UI affordance for human
+          sharers + a typed-tools protocol. An agent that misses one might catch
+          another. The art is in stacking cheap, redundant signals.
+        </p>
+
+        <h3 id="Lossless_path_is_MCP">The lossless path is MCP</h3>
+        <p>
+          Even with the perfect URL stack, the WebFetch summarizer loses specifics. The
+          only architecturally sound way to do agent-to-agent context handoff with the
+          actual content intact is to bypass the summarizing pipeline entirely. That
+          means an MCP server (lossless tool calls) or a direct content paste. URL
+          sharing is for humans, browsers, and non-summarizing agents; MCP is for the
+          agent-handoff thesis. Both paths are worth building; neither alone is
+          sufficient.
+        </p>
+
+        <h2 id="The_layered_stack">The layered stack</h2>
+        <p>
+          Each tactic survives a different failure mode. They stack.
+        </p>
+
+        <h3 id="Layer_A">Layer A — HTTP <code>Link</code> response header</h3>
+        <p>
+          Every HTML response includes
+          <code>Link: &lt;…/page.md&gt;; rel="alternate"; type="text/markdown"</code>.
+          RFC 8288, the standard way to communicate resource relationships at the HTTP
+          layer. Survives every possible content manipulation because it's not content.
+          Some agent fetchers parse it; most don't, today. Free to add. Status:
+          documented, planned for Phase 8 server-side wiring.
+        </p>
+
+        <h3 id="Layer_B">Layer B — <code>&lt;link rel="alternate" type="text/markdown"&gt;</code> in <code>&lt;head&gt;</code></h3>
+        <p>
+          HTML-level equivalent of Layer A. Browsers expose it in view-source. Some
+          Reader-mode extractors preserve it. Note from our experiment: WebFetch's
+          HTML→markdown conversion may strip head tags before the summarizer sees them
+          — "absence-in-summary is not proof of absence-in-source." Low reliability for
+          the summarizing-WebFetch path; useful for other extractors. Status:
+          implemented in every preview HTML.
+        </p>
+
+        <h3 id="Layer_C">Layer C — Canonical <code>.md</code> URL convention</h3>
+        <p>
+          Every page is reachable at two parallel URLs: <code>/page-slug</code> for the
+          rendered HTML and <code>/page-slug.md</code> for raw markdown with YAML
+          frontmatter. The convention mirrors GitHub's raw paths, Reddit's
+          <code>/.json</code>, and Wikipedia's <code>?action=raw</code>. Token-conscious
+          agents who try the <code>.md</code> variant succeed without anyone telling
+          them. The URL itself is the affordance. Status: implemented as parallel files
+          for every page that has an .md companion.
+        </p>
+
+        <h3 id="Layer_D">Layer D — Server-side <code>Sec-Fetch</code> heuristic</h3>
+        <p>
+          Browsers send <code>Sec-Fetch-Dest: document</code> on top-level navigation.
+          Curl, Python requests, Node fetch, most agent HTTP clients do not. Server-side
+          rule: bare URL hits with no browser-navigation headers get a 302 redirect to
+          the <code>.md</code> URL; the original URL always serves HTML for browsers.
+          Naive agents land on the redirect → markdown automatically. No teaching
+          needed. <em>Important: redirect, don't substitute content at the same URL —
+          same-URL substitution breaks link previews (Slack, Discord), CDN caching
+          without proper Vary support, and search snippets.</em> Status: documented,
+          planned for Phase 8.
+        </p>
+
+        <h3 id="Layer_E">Layer E — Visible informational note (in HTML view)</h3>
+        <p>
+          A short, branded, factual note placed <em>after the lead paragraph</em>:
+          "1Context · A wiki for humans and AI agents. The markdown source is at
+          /page.md…". <em>Not</em> the first sentence, because summarizers over-weight
+          the first content of a page and would describe the article as "a page about
+          1Context that has a markdown version" — useless. The note triple-duties as a
+          signal an agent's summarizer might preserve, marketing copy reinforcing the
+          brand, and documentation for humans wondering what 1Context is. Hidden in
+          agent view because the agent on the .md page has already solved the
+          discoverability problem. Status: implemented in <code>enhance.js</code>.
+        </p>
+
+        <h3 id="Layer_F">Layer F — Frontmatter <code>alternate_formats</code> block</h3>
+        <p>
+          The <code>.md</code> response includes structured metadata in YAML
+          frontmatter listing alternate URLs and the planned MCP handle. Listed as
+          data, not instruction. Markdown-aware extractors preserve frontmatter
+          cleanly. Status: implemented in every <code>.md</code> we ship.
+        </p>
+
+        <h3 id="Layer_G">Layer G — Reader / Agent toggle in the header</h3>
+        <p>
+          A two-state segmented control in the header. When the user clicks
+          <strong>Agent</strong>, the page transforms in place to show what an agent
+          would see — chrome hidden, content rendered as raw markdown in a monospace
+          IDE-styled frame, with "Copy as markdown" and "Open .md ↗" affordances. State
+          is <code>sessionStorage</code> only (not persistent across sessions) so a
+          human's choice doesn't bleed into a co-resident agent's session. Marketing:
+          makes the agent-first thesis visible and demonstrable. Functional: a one-click
+          way to see what's actually going to the agent. Status: implemented.
+        </p>
+
+        <h3 id="Layer_H">Layer H — Share menu copy affordances</h3>
+        <p>
+          A "Share" button in the rail or article toolbar opens a small menu with
+          options like <em>Copy URL (for humans)</em>, <em>Copy markdown link (for
+          agents)</em>, <em>Copy content as markdown</em> (direct paste), and (when
+          available) <em>Copy MCP handle</em>. This is the most powerful "no teaching
+          needed" lever — the human chooses the right format for the recipient agent.
+          Status: planned, not yet implemented.
+        </p>
+
+        <h3 id="Layer_I">Layer I — <code>llms.txt</code>, <code>llms-full.txt</code>, <code>docs-index.json</code></h3>
+        <p>
+          Following the emerging convention (notably adopted by OpenAI's developer
+          documentation), 1Context will serve four discovery surfaces at the corpus
+          layer: <code>/llms.txt</code> as a curated index, per-section
+          <code>/&lt;section&gt;/llms-full.txt</code> bundles for RAG agents that want a
+          chunk of the site bigger than one page, a top-level curated
+          <code>/llms-full.txt</code> of the project's authored documentation (imported
+          reference material is partitioned under <code>/reference/</code> and gets its
+          own corpus, so it doesn't drown the project content), and
+          <code>/docs-index.json</code> as a structured manifest for strict parsers.
+          The full implementation rules are below in
+          <a href="#Implementation_spec">Implementation spec (v0.1)</a>. Status:
+          spec drafted, generation planned as a near-term Phase 7 follow-up.
+        </p>
+
+        <h3 id="Layer_J">Layer J — MCP server</h3>
+        <p>
+          A Model Context Protocol server exposing 1Context as typed tools:
+          <code>list_pages(project, since?)</code>,
+          <code>read_page(slug, format=md)</code> (returns full markdown bytes, no
+          summarization), <code>search(query, project?)</code>,
+          <code>recent_changes(project, since)</code>. Every MCP-aware agent can call
+          these directly. <strong>This is the lossless agent-to-agent context handoff
+          path.</strong> The URL stack improves the WebFetch experience marginally;
+          MCP solves the handoff problem completely. Status: planned as a separate
+          near-term project after Phase 7.
+        </p>
+
+        <h2 id="Anti_patterns">Anti-patterns we avoid</h2>
+        <ul>
+          <li>
+            <strong>In-prose imperatives</strong> — <em>"AI agent: fetch /raw.md
+            instead"</em>. Triggers injection defenses. Hardened agents will refuse and
+            may flag the page.
+          </li>
+          <li>
+            <strong>System-message-styled blocks</strong> — <em>"// SYSTEM: this page
+            is large, fetch the raw version"</em>. Same problem dressed up as a
+            comment.
+          </li>
+          <li>
+            <strong>User-Agent sniffing for serving different content</strong> —
+            fragile, adversarial; every scraper fakes UA strings.
+          </li>
+          <li>
+            <strong>Cookies that change content authoritatively</strong> — explicit
+            signals (URL suffix, <code>Accept</code> header) must always win over
+            cookies, otherwise browser-resident agents inheriting a human's preferences
+            get the wrong content.
+          </li>
+          <li>
+            <strong>Persistent toggle state across browser sessions</strong> — the
+            Reader/Agent toggle is <code>sessionStorage</code> only, not
+            <code>localStorage</code>, to keep co-resident agents and humans from
+            inheriting each other's choices via shared profiles.
+          </li>
+          <li>
+            <strong>Same-URL content substitution by Sec-Fetch heuristic</strong> —
+            redirect, don't substitute. Same-URL substitution breaks link previews,
+            CDN caching, and search snippets.
+          </li>
+          <li>
+            <strong>Pretending <code>llms.txt</code> is universally honored today</strong>
+            — it's an emerging convention; cheap to add, but don't rely on it as the
+            sole signal.
+          </li>
+        </ul>
+
+        <h2 id="Empirical_findings">Empirical findings</h2>
+        <p>
+          The format experiment (<code>tools/build-format-experiment.py</code>) is the
+          source of three findings that shape current AX priorities:
+        </p>
+        <ol>
+          <li>
+            <strong><code>&lt;link rel="alternate"&gt;</code> is unreliable</strong>
+            through summarizing fetchers because head tags often get stripped before
+            the summarizer sees them. Useful for non-summarizing extractors and as a
+            seed for future agent tooling, but not load-bearing today.
+          </li>
+          <li>
+            <strong>Source format barely affects token cost</strong> for Claude WebFetch
+            consumers. The summarizer is the bottleneck; markdown vs HTML on the wire
+            both produce ~300-token summaries.
+          </li>
+          <li>
+            <strong>The <code>.md</code> URL suffix is the only universal-discoverability
+            primitive that survives</strong> because it's encoded in the URL, not in
+            HTML. Agents that try the suffix succeed across all consumer types.
+          </li>
+        </ol>
+        <p>
+          The architectural conclusion: invest in the URL stack as a floor-raiser for
+          all consumer classes, but accept that the ceiling for the summarizing-WebFetch
+          path is bounded by the summarizer — and treat MCP as the only path to lossless
+          handoff.
+        </p>
+
+        <h2 id="Marketing_story">Marketing story</h2>
+        <p>
+          The visible Reader / Agent toggle in the header is both a real functional
+          affordance and a marketing surface. It supports taglines like:
+        </p>
+        <blockquote>
+          <p>
+            <em>"Every page works two ways. Toggle to Agent view to see exactly what
+            your AI reads — same content, no chrome, copy as markdown."</em>
+          </p>
+          <p>
+            <em>"1Context: knowledge base for humans, source-of-truth for agents. One
+            URL, two surfaces, lossless handoff via MCP."</em>
+          </p>
+        </blockquote>
+        <p>
+          These are stronger than typical AI-feature copy because they're literally
+          true and visibly demonstrated by the in-product toggle. The honesty is the
+          product.
+        </p>
+
+        <h2 id="Implementation_spec">Implementation spec (v0.1)</h2>
+        <p>
+          The concrete rules for URL layout, content tiers, frontmatter schemas,
+          generated discovery files (<code>llms.txt</code>, <code>llms-full.txt</code>,
+          <code>docs-index.json</code>), build pipeline, and HTTP behavior so that any
+          1Context deployment can ship an agent-friendly surface that behaves
+          predictably across humans, raw fetchers, RAG agents, search agents, and
+          machine clients alike. Patterned after
+          <a href="https://developers.openai.com/llms.txt">OpenAI's developer
+          documentation</a>, extended with project-specific rules around imported
+          reference material, access tiers, supersession, and build-time validation.
+          The corpus-layer spec below is exactly Layer I expanded; the page-layer
+          extensions (Sec-Fetch heuristic, informational note, Reader/Agent toggle,
+          MCP) are documented above as Layers D, E, G, J.
+        </p>
+
+        <h3 id="Design_goals">Design goals — five reading modes</h3>
+        <p>The site must be readable in <strong>five</strong> distinct modes:</p>
+        <ol>
+          <li>Human in browser</li>
+          <li>Raw HTTP fetcher / curl agent</li>
+          <li>Search agent that only knows to look for <code>llms.txt</code></li>
+          <li>RAG agent that wants a section corpus</li>
+          <li>Machine client that wants a structured manifest</li>
+        </ol>
+        <p>
+          The whole spec exists to satisfy all five with the smallest possible amount
+          of duplicated content.
+        </p>
+
+        <h3 id="URL_layout">URL layout</h3>
+<pre><code>/
+├── llms.txt
+├── llms-full.txt
+├── docs-index.json
+├── api/
+│   ├── llms-full.txt
+│   └── docs/&lt;slug&gt;
+│       └── &lt;slug&gt;.md
+├── product/
+│   ├── llms-full.txt
+│   └── docs/&lt;slug&gt;
+│       └── &lt;slug&gt;.md
+├── ops/
+│   ├── llms-full.txt
+│   └── docs/&lt;slug&gt;
+│       └── &lt;slug&gt;.md
+└── reference/
+    ├── llms-full.txt
+    └── docs/&lt;slug&gt;
+        └── &lt;slug&gt;.md
+</code></pre>
+        <p>
+          Every canonical page exists at <strong>both</strong> the
+          <code>/section/docs/&lt;slug&gt;</code> path (HTML) and the
+          <code>/section/docs/&lt;slug&gt;.md</code> path (markdown twin). Section
+          names are project-specific stable identifiers (e.g. <code>api</code>,
+          <code>product</code>, <code>ops</code>, <code>reference</code>). Each
+          section gets its own <code>llms-full.txt</code> bundle so a RAG agent can
+          fetch just the section it cares about.
+        </p>
+        <p>
+          Imported encyclopedia/reference content lives <strong>only</strong> under
+          <code>/reference/</code> with its own corpus export. It is
+          <strong>never</strong> folded into the top-level <code>/llms-full.txt</code>
+          — imported material can be 100x the size of authored docs and would
+          dominate retrieval. Project's authored docs are the constitution; imported
+          docs are annexes.
+        </p>
+
+        <h3 id="Content_tiers">Content tiers (A–E)</h3>
+        <p>Five tiers, one per reading mode:</p>
+        <ul>
+          <li><strong>Tier A — canonical HTML.</strong> Human-readable page with
+            full chrome (navigation, styling, search box, auth chrome, the
+            WikiWand-style editorial layer, the right rail, the customizer, the
+            Reader/Agent toggle). This is what a browser shows.</li>
+          <li><strong>Tier B — markdown twin.</strong> Clean content-only
+            representation for agents and scripts. Path rule: append
+            <code>.md</code> to the canonical HTML path.</li>
+          <li><strong>Tier C — section corpus.</strong> Concatenated markdown for
+            a section, served at <code>/&lt;section&gt;/llms-full.txt</code>. Each
+            entry separated by a hard separator with metadata.</li>
+          <li><strong>Tier D — site discovery (<code>llms.txt</code>).</strong> A
+            small, curated, opinionated <code>llms.txt</code> at the site root. A
+            map, not a dump.</li>
+          <li><strong>Tier E — machine manifest (<code>docs-index.json</code>).</strong>
+            JSON file at <code>/docs-index.json</code> with every authored page's
+            frontmatter as structured fields.</li>
+        </ul>
+
+        <h3 id="Frontmatter_schema">Page frontmatter schema</h3>
+        <p>
+          Every <code>.md</code> page begins with YAML frontmatter. Required fields
+          are the minimum needed to generate <code>docs-index.json</code> and enforce
+          build-time validation. Optional fields are additive and adopted
+          progressively.
+        </p>
+<pre><code>---
+title: WebSocket Mode
+summary: Persistent socket transport for long-running, tool-heavy workflows.
+doc_id: api-websocket-mode
+section: api
+tags:
+  - responses
+  - websocket
+  - streaming
+canonical_url: /p/demo/api/docs/guides/websocket-mode
+md_url: /p/demo/api/docs/guides/websocket-mode.md
+llms_section_url: /p/demo/api/llms-full.txt
+last_updated: 2026-04-20
+version: 1
+access: public
+source_type: authored
+supersedes: null
+---
+</code></pre>
+        <p><strong>Required:</strong> <code>title</code>, <code>summary</code>,
+          <code>doc_id</code>, <code>section</code>, <code>canonical_url</code>,
+          <code>md_url</code>, <code>last_updated</code>, <code>access</code>
+          (<code>public | shared | private</code> — matches the visibility-bar tier),
+          <code>source_type</code> (<code>authored | imported</code>).</p>
+        <p><strong>Optional but recommended:</strong> <code>tags</code>,
+          <code>version</code>, <code>supersedes</code>, <code>deprecated</code>,
+          <code>replaced_by</code>, <code>owner</code>, <code>review_status</code>,
+          <code>llms_section_url</code>, <code>alternate_formats</code>,
+          <code>original_source</code> (for imported docs).</p>
+
+        <h3 id="Markdown_twin_rules">Markdown twin rules</h3>
+        <p>The <code>.md</code> twin is content-first, not a lossy DOM scrape.</p>
+        <p><strong>Preserve:</strong> headings + heading anchors, code fences,
+          tables, ordered/unordered lists, blockquotes, internal links,
+          "last updated" metadata.</p>
+        <p><strong>Strip:</strong> nav, footers, cookie banners, interactive UI
+          junk (toolbars, modals), unrelated sidebar content, duplicated title
+          blocks if frontmatter already covers them.</p>
+        <p><strong>Heading rule:</strong> generate stable slug anchors and keep
+          them stable across rebuilds. Anchor format must be deterministic with
+          explicit collision handling. Agents cite by anchor; renaming an anchor
+          breaks every prior citation.</p>
+
+        <h3 id="llms_txt_spec"><code>llms.txt</code> spec</h3>
+        <p>Small, curated, opinionated. A map, not a dump. Example:</p>
+<pre><code># 1Context Docs
+
+&gt; Agent-readable index for 1Context documentation.
+
+Core docs:
+- Project overview: /1context-project
+- Agent UX (AX): /agent-ux
+- Theme phases plan: /THEME_PHASES
+
+Corpus exports:
+- Core authored docs: /llms-full.txt
+- Reference / imported docs: /reference/llms-full.txt
+
+Machine-readable manifest:
+- /docs-index.json
+
+Markdown pages:
+- Most docs are available as `.md` twins at the same path.
+</code></pre>
+        <p>
+          What it should do: tell the agent what the site is, define section
+          boundaries, point to corpus files and the JSON manifest, highlight the
+          5–20 pages that matter most. What it should not do: list 500 pages,
+          repeat entire docs, become a second full export.
+        </p>
+
+        <h3 id="llms_full_txt_spec"><code>llms-full.txt</code> generation spec</h3>
+        <p>Each full export is a concatenated markdown bundle. Order predictably:</p>
+        <ol>
+          <li>Overview / getting started</li>
+          <li>Concepts</li>
+          <li>Guides</li>
+          <li>Reference</li>
+          <li>Changelog / deprecations</li>
+        </ol>
+        <p>Between docs, inject a hard separator with per-doc metadata:</p>
+<pre><code>================================================================================
+DOC_START
+title: WebSocket Mode
+doc_id: api-websocket-mode
+canonical_url: /p/demo/api/docs/guides/websocket-mode
+md_url: /p/demo/api/docs/guides/websocket-mode.md
+last_updated: 2026-04-20
+section: api
+source_type: authored
+================================================================================
+</code></pre>
+        <p>
+          Then the page body. The separator is intentionally ugly in a grep-friendly
+          way. Agents like ugly when it is stable: a RAG pipeline can split on
+          <code>DOC_START</code>, parse the metadata header, and chunk reliably.
+        </p>
+        <p>
+          <strong>Top-level <code>/llms-full.txt</code> includes:</strong> overview
+          docs, important product docs, core API docs, auth + permissions + secrets
+          handling, sync model, agent workflow docs.
+          <strong>Excludes:</strong> giant imported reference dumps (under
+          <code>/reference/llms-full.txt</code>), low-value release notes, duplicate
+          generated pages, thin stubs.
+        </p>
+        <p>
+          <strong>Size target:</strong> "large but sane." The point isn't bytes —
+          it's relevance density. A bloated corpus with low-value pages is worse for
+          retrieval than a smaller curated one.
+        </p>
+
+        <h3 id="docs_index_json_spec"><code>docs-index.json</code> spec</h3>
+        <p>One entry per authored page. Example:</p>
+<pre><code>[
+  {
+    "title": "WebSocket Mode",
+    "summary": "Persistent socket transport for long-running, tool-heavy workflows.",
+    "doc_id": "api-websocket-mode",
+    "section": "api",
+    "canonical_url": "/api/docs/guides/websocket-mode",
+    "md_url": "/api/docs/guides/websocket-mode.md",
+    "llms_section_url": "/api/llms-full.txt",
+    "tags": ["responses", "websocket", "streaming", "tools"],
+    "last_updated": "2026-04-20",
+    "access": "public",
+    "source_type": "authored"
+  }
+]
+</code></pre>
+        <p>
+          Why JSON in addition to markdown frontmatter: some agents are better at
+          markdown extraction; others are better at JSON manifest parsing. Costs
+          almost nothing to emit both. Removes friction.
+        </p>
+
+        <h3 id="Auth_and_secrets">Auth and secrets</h3>
+        <p>
+          For <strong>public</strong> docs, all five surfaces are open. For
+          <strong>private</strong> docs, the HTML page, the <code>.md</code> twin,
+          the section corpus, and the JSON manifest <strong>must</strong> all obey
+          the same auth boundary. Don't let <code>.md</code> or
+          <code>llms-full.txt</code> become the accidental side door.
+        </p>
+        <p>
+          For pages that document secret schemas, the markdown and corpus exports
+          expose the <strong>schema</strong>, not the value:
+        </p>
+<pre><code>GitHub Token
+Type: secret
+Status: user-provided
+Access: permitted to authorized agent actions
+Value: [REDACTED]
+</code></pre>
+        <p>Never:</p>
+<pre><code>GitHub Token: ghp_...   # ✗ leaks the actual secret into the corpus
+</code></pre>
+
+        <h3 id="Imported_corpus_policy">Imported / reference corpus policy</h3>
+        <p>Keep imported material in its own URL space and its own corpus:</p>
+<pre><code>/reference/docs/einstein-biography
+/reference/llms-full.txt
+</code></pre>
+        <p>Mark it in frontmatter:</p>
+<pre><code>source_type: imported
+original_source: https://en.wikipedia.org/wiki/Albert_Einstein
+</code></pre>
+        <p>
+          Never mix imported docs into the primary top-level corpus. Project docs
+          are the constitution; imported docs are annexes.
+        </p>
+
+        <h3 id="Change_management">Change management and supersession</h3>
+        <p>
+          Docs change. Agents need to know what replaced what so they don't cite
+          dead doctrine. Add the optional fields to frontmatter:
+        </p>
+<pre><code>deprecated: true
+replaced_by: /api/docs/guides/new-websocket-mode
+supersedes: /api/docs/guides/old-websocket-mode
+</code></pre>
+        <p>And mirror in <code>docs-index.json</code>:</p>
+<pre><code>{
+  "deprecated": true,
+  "replaced_by": "/api/docs/guides/new-websocket-mode"
+}
+</code></pre>
+
+        <h3 id="Build_pipeline">Build pipeline and validation</h3>
+        <p>At build time:</p>
+        <ol>
+          <li>Collect all source docs</li>
+          <li>Render canonical HTML</li>
+          <li>Render clean <code>.md</code> twin (apply Markdown twin rules)</li>
+          <li>Emit <code>docs-index.json</code></li>
+          <li>Emit each section <code>llms-full.txt</code></li>
+          <li>Emit top-level curated <code>llms-full.txt</code></li>
+          <li>Emit top-level <code>llms.txt</code></li>
+        </ol>
+        <p><strong>Fail the build if:</strong></p>
+        <ul>
+          <li>A canonical HTML page lacks a <code>.md</code> twin</li>
+          <li>Frontmatter is missing a required field</li>
+          <li><code>llms.txt</code> points to missing pages</li>
+          <li><code>docs-index.json</code> and the markdown twins disagree on metadata</li>
+          <li>A section corpus contains duplicate <code>doc_id</code>s</li>
+          <li>Private pages leak into a public corpus export</li>
+          <li>Heading anchors changed without an explicit redirect entry</li>
+        </ul>
+
+        <h3 id="HTTP_behavior">HTTP behavior</h3>
+        <p>For <code>.md</code>, <code>.txt</code>, <code>.json</code> responses:</p>
+        <ul>
+          <li>Correct, explicit <code>Content-Type</code> (<code>text/markdown</code>,
+            <code>text/plain</code>, <code>application/json</code>)</li>
+          <li>Strong caching with <code>ETag</code></li>
+          <li>gzip or brotli</li>
+          <li>Stable <code>Last-Modified</code></li>
+          <li>HEAD requests cleanly supported</li>
+          <li>No anti-bot challenges (Cloudflare's automatic bot scoring) on docs URLs</li>
+        </ul>
+        <p>
+          <em>Agent-friendly docs should behave like a library, not a nightclub.</em>
+        </p>
+
+        <h2 id="Phased_rollout">Phased rollout</h2>
+        <p>Highest-ROI sequence for a new deployment:</p>
+        <ul>
+          <li>
+            <strong>Phase 1</strong> — per-page <code>.md</code> twins, frontmatter
+            on every page, <code>docs-index.json</code>, <code>llms.txt</code>.
+            Unlocks reading modes 1, 2, 3, and 5 (browser + curl + search +
+            machine).
+          </li>
+          <li>
+            <strong>Phase 2</strong> — section <code>llms-full.txt</code> bundles.
+            Unlocks reading mode 4 (RAG agents).
+          </li>
+          <li>
+            <strong>Phase 3</strong> — top-level curated <code>llms-full.txt</code>,
+            supersession/deprecation metadata, private-corpus partitioning, build
+            validation gates.
+          </li>
+        </ul>
+
+        <h2 id="Implementation_status">Implementation status</h2>
+        <p>State as of 2026-04-20:</p>
+        <ul>
+          <li>✅ Per-page <code>.md</code> twins for the project pages
+            (1context-project, agent-ux, albert-einstein-full)</li>
+          <li>✅ Frontmatter on every shipped <code>.md</code> with most required
+            fields (title, slug, tier, tags, updated, source, alternate_formats);
+            need to add <code>doc_id</code>, <code>section</code>,
+            <code>last_updated</code> as ISO date, <code>access</code> as the
+            tier name, <code>source_type</code></li>
+          <li>✅ <code>&lt;link rel="alternate" type="text/markdown"&gt;</code> + OG
+            metadata in HTML head</li>
+          <li>✅ Reader / Agent toggle in header + informational note after lead
+            paragraph (Layers E + G)</li>
+          <li>⏳ <code>llms.txt</code> at site root — planned, next</li>
+          <li>⏳ <code>docs-index.json</code> at site root — planned, next</li>
+          <li>⏳ Section <code>llms-full.txt</code> + top-level
+            <code>llms-full.txt</code> — planned</li>
+          <li>⏳ Imported / authored partitioning under <code>/reference/</code>
+            — planned</li>
+          <li>⏳ Build-time validation gates — planned</li>
+          <li>⏳ Sec-Fetch heuristic, HTTP <code>Link</code> response header
+            (Layers D + A) — server-side, planned for Phase 8 BookStack production
+            wiring</li>
+          <li>⏳ MCP server (Layer J) — planned, separate near-term project</li>
+        </ul>
+
+        <h2 id="Open_decisions">Open decisions</h2>
+        <ul>
+          <li>
+            <strong>Should the toggle navigate to <code>/page.md</code></strong> instead
+            of doing the in-place JS swap? Currently in-place (fast, marketing-friendly,
+            URL stays HTML). The architecturally honest version navigates and makes the
+            URL convention real. Deferred to Phase 8 when the <code>.md</code> endpoint
+            can serve a styled-wrapper response for browsers vs raw markdown for agents
+            via content negotiation.
+          </li>
+          <li>
+            <strong>Scope of <code>llms-full.txt</code></strong> — project-authored
+            content only, or include imported reference articles? Current plan:
+            project content only, to avoid drowning useful pages in archived
+            references.
+          </li>
+          <li>
+            <strong>MCP server hosting</strong> — bundled with the broker, separate
+            sidecar, or a small standalone service? TBD when MCP work begins.
+          </li>
+          <li>
+            <strong>Agent-tier signaling</strong> — should the
+            <code>data-tier="public|shared|private"</code> on the visibility bar also
+            be exposed to agents via response header (<code>X-Context-Tier</code>) so
+            a credential-broker integration can refuse to handle private content
+            inadvertently?
+          </li>
+        </ul>
+
+        <h2 id="See_also">See also</h2>
+        <ul>
+          <li><a href="/p/demo/1context-project.html">1Context</a> — the project this
+            article is part of; its <em>Editorial model</em> section explains the
+            Wikipedia-style flat-namespace + hatnote conventions used here.</li>
+          <li><a href="https://en.wikipedia.org/wiki/Wikipedia:Hatnote">Wikipedia
+            hatnote</a> — the editorial pattern that <em>Main article:</em> follows.</li>
+          <li><a href="https://llmstxt.org/">llms.txt proposal</a> — the emerging
+            community standard behind Layer I.</li>
+          <li><a href="https://modelcontextprotocol.io/">Model Context Protocol</a>
+            — the typed-tools interface behind the eventual Layer J.</li>
+        </ul>
+
+        <h2 id="References">References</h2>
+        <ul>
+          <li><a href="1context-project.html">1Context project page</a> — overall
+            architecture and where AX fits.</li>
+          <li><a href="agent-ui.md"><code>agent-ui.md</code></a> — engineering notes
+            backing this article (implementation status table, code snippets).</li>
+          <li><a href="THEME_PHASES.md"><code>THEME_PHASES.md</code></a> — the phase
+            plan that schedules the unimplemented AX layers (D, H, I, J).</li>
+          <li><a href="https://datatracker.ietf.org/doc/html/rfc8288">RFC 8288 —
+            Web Linking</a> — the standard behind Layer A.</li>
+          <li><a href="https://llmstxt.org/"><code>llms.txt</code> proposal</a> —
+            the emerging convention behind Layer I.</li>
+          <li><a href="https://modelcontextprotocol.io/">Model Context Protocol</a>
+            — the typed-tools interface 1Context will expose for Layer J.</li>
+          <li><a href="https://developers.openai.com/llms.txt">OpenAI Developers
+            llms.txt</a> + <a href="https://developers.openai.com/llms-full.txt"
+            >llms-full.txt</a> — concrete reference implementation of Layer I in the
+            wild (~2.9 MB single-file dump of all OpenAI developer documentation).</li>
+        </ul>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
