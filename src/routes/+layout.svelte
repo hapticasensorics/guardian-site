@@ -13,7 +13,7 @@
       style="font-weight: 300; color: var(--color-text)"
     >
       <img src="/fish-logo.png" alt="Haptica fish" class="h-10 w-10" />
-      Guardian
+      Haptica
     </a>
 
     <nav class="label-chip flex items-center gap-5" style="color: #999">

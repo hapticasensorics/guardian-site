@@ -1,149 +1,105 @@
 <script lang="ts">
+  import WikiDemo from '$lib/components/WikiDemo.svelte';
   import ChatDemo from '$lib/components/ChatDemo.svelte';
+  import { dayEntries, daySummary } from '$lib/day-entries';
 </script>
 
 <svelte:head>
-  <title>Guardian</title>
+  <title>Haptica 1Context</title>
   <meta
     name="description"
-    content="Guardian captures your screen continuously and gives every AI tool persistent memory of your work through MCP."
+    content="Haptica 1Context is the cross-agent memory layer for your work. One install. Works with Claude, Cursor, and ChatGPT through MCP."
   />
 </svelte:head>
 
-<section class="mb-16 mt-4">
+<section class="mb-12 mt-4 grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
   <div>
-    <h1 class="m-0 font-[var(--font-serif)] italic" style="font-weight: 300">
-      Your AI tools forget everything. Guardian doesn't.
-    </h1>
-    <p class="mb-8 mt-4 max-w-[56ch] text-base leading-6" style="color: var(--color-text)">
-      A Mac app that captures your screen in the background, builds structured memory of your
-      work, and serves it to Claude, Cursor, and ChatGPT through MCP.
+    <p class="label-chip mb-3 text-[12px]" style="color: #999; letter-spacing: 0.18em">
+      HAPTICA 1CONTEXT
     </p>
+    <h1 class="m-0 font-[var(--font-serif)] italic" style="font-weight: 300">
+      Own your context.
+    </h1>
+    <p class="mb-6 mt-4 max-w-[48ch] text-base leading-6" style="color: var(--color-text)">
+      The cross-agent memory layer for your work. One install. MCP-native, works with Claude,
+      Cursor, and ChatGPT.
+    </p>
+    <a
+      href="https://forms.gle/b1nX4idziZR7RegC9"
+      target="_blank"
+      rel="noreferrer"
+      class="cta-link label-chip inline-flex items-center border border-[var(--color-text)] px-6 py-3 text-[15px] no-underline"
+    >
+      Join the waitlist
+    </a>
+  </div>
 
-    <div class="mb-10 text-center">
-      <a
-        href="https://forms.gle/b1nX4idziZR7RegC9"
-        target="_blank"
-        rel="noreferrer"
-        class="cta-link label-chip inline-flex items-center border border-[var(--color-text)] px-6 py-3 text-[15px] no-underline"
-      >
-        Join the waitlist
-      </a>
-    </div>
-
-    <ChatDemo />
+  <div>
+    <WikiDemo />
   </div>
 </section>
 
-<section class="mb-16">
-  <h2 class="section-rule mb-6 mt-0">A sample work day</h2>
+<section class="mb-12 grid gap-8 md:grid-cols-[1fr_1fr]">
+  <div>
+    <h2 class="section-rule mb-4 mt-0">Where we&rsquo;re going</h2>
+    <p class="mb-4 text-[13px] italic" style="color: rgba(26,26,26,0.55)">
+      Long-term: a desktop agent that captures your work in the background, so 1Context builds
+      itself.
+    </p>
+    <ChatDemo />
+  </div>
 
-  <p class="mt-0 mb-6 text-[15px] leading-7" style="color: rgba(26, 26, 26, 0.65)">
-    Wednesday. Deep coding in the morning, a standup, context switching between three projects, a design review, and a late-night fix. Guardian captured all of it.
-  </p>
-
-  <div class="surface-card px-5">
-    <div class="repo-divider py-5 first:pt-0">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">09:30</span>
-        <div>
-          <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Deep work on the ingestion pipeline. VS Code open, three terminal tabs, Claude Code running. Refactored the timestamp parser in scene_claims.py. Decided to keep the Whisper+Gemini path reversible instead of committing to one.
-          </p>
-          <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            VS Code &middot; Claude Code &middot; 2.1h focus block
-          </p>
+  <div>
+    <h2 class="section-rule mb-4 mt-0">A sample work day</h2>
+    <p class="mb-4 text-[13px] italic" style="color: rgba(26,26,26,0.55)">
+      Wednesday. Captured in the background, queryable from any agent.
+    </p>
+    <div class="surface-card px-5">
+      {#each dayEntries as entry}
+        <div class="repo-divider py-3 first:pt-0">
+          <div class="flex items-start gap-3">
+            <span class="score-chip shrink-0 mt-0.5">{entry.time}</span>
+            <p class="m-0 text-[13px] leading-5" style="color: var(--color-text)">
+              {entry.body}
+            </p>
+          </div>
         </div>
+      {/each}
+      <div class="repo-divider py-4 last:pb-0">
+        <p class="label-chip mb-2 mt-0 text-[11px]" style="color: #999">1context</p>
+        <p class="m-0 text-[13px] italic leading-5" style="color: var(--color-text)">
+          {daySummary}
+        </p>
       </div>
-    </div>
-
-    <div class="repo-divider py-5">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">11:45</span>
-        <div>
-          <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Standup with Paul. Committed to shipping MCP auth by Friday. Alex asked about the API docs, said they&rsquo;d be done by Thursday. Mentioned the race condition in PR #38 needs a fix before merge.
-          </p>
-          <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Google Meet &middot; 12 min &middot; 3 commitments tracked
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="repo-divider py-5">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">14:00</span>
-        <div>
-          <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Context switch to the landing page redesign. Figma open alongside the codebase. Reviewed three layout options, picked the editorial direction. Sent a Slack message to the team with the decision and reasoning.
-          </p>
-          <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            Figma &middot; Slack &middot; 1 decision logged
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="repo-divider py-5">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">16:30</span>
-        <div>
-          <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Back to code. PR review on the MCP server changes. Found a bug in the auth flow, left a comment. Switched to Cursor for the race condition fix. Got halfway through before getting pulled into an investor email.
-          </p>
-          <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            GitHub &middot; Cursor &middot; Gmail &middot; 3 context switches
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="repo-divider py-5">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <span class="score-chip shrink-0 sm:mt-0.5">23:00</span>
-        <div>
-          <p class="m-0 text-[15px] leading-6" style="color: var(--color-text)">
-            Late-night session. Finally fixed the race condition. Pushed the commit, closed the PR. Opened Claude Code to draft the API docs but got sidetracked reading a thread about MCP auth patterns.
-          </p>
-          <p class="label-chip mb-0 mt-2 text-[12px]" style="color: #999">
-            VS Code &middot; GitHub &middot; Claude Code &middot; 1.8h focus block
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="repo-divider py-5 last:pb-0">
-      <p class="label-chip mb-2 mt-0" style="color: #999">Guardian</p>
-      <p class="m-0 text-[15px] italic leading-7" style="color: var(--color-text)">
-        You committed to API docs by Thursday and MCP auth by Friday. The docs haven&rsquo;t been started. The race condition is fixed but you never went back to the auth work. Tomorrow&rsquo;s standup is in 10 hours.
-      </p>
     </div>
   </div>
 </section>
 
 <section id="contact" class="mb-8">
   <h2 class="section-rule mb-6 mt-0">Contact</h2>
-
-  <div class="surface-card text-center">
-    <p class="mb-4 mt-0">
-      <a
-        href="https://forms.gle/b1nX4idziZR7RegC9"
-        target="_blank"
-        rel="noreferrer"
-        class="cta-link label-chip inline-flex items-center border border-[var(--color-text)] px-6 py-3 no-underline"
-      >
-        Join the waitlist
-      </a>
-    </p>
-    <p class="mb-0 mt-4">
-      <a
-        href="mailto:contact@haptica.ai"
-        class="label-chip inline-flex items-center border border-[var(--color-text)] px-4 py-3 no-underline"
-        style="color: var(--color-text)"
-      >
-        contact@haptica.ai
-      </a>
-    </p>
+  <div
+    class="surface-card flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6"
+  >
+    <a
+      href="https://forms.gle/b1nX4idziZR7RegC9"
+      target="_blank"
+      rel="noreferrer"
+      class="cta-link label-chip inline-flex items-center border border-[var(--color-text)] px-6 py-3 no-underline"
+    >
+      Join the waitlist
+    </a>
+    <a
+      href="mailto:contact@haptica.ai"
+      class="label-chip inline-flex items-center border border-[var(--color-text)] px-4 py-3 no-underline"
+      style="color: var(--color-text)"
+    >
+      contact@haptica.ai
+    </a>
   </div>
 </section>
+
+<style>
+  :global(.paper-column) {
+    max-width: 1120px;
+  }
+</style>
