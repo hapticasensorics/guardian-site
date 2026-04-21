@@ -17,7 +17,7 @@
     </a>
 
     <nav class="label-chip flex items-center gap-5" style="color: #999">
-      <a class="border-none hover:opacity-100" style="color: inherit" href="#contact">Contact</a>
+      <a class="border-none hover:opacity-100" style="color: inherit" href="/#contact">Contact</a>
     </nav>
   </header>
 
