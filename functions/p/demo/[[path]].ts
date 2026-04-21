@@ -6,21 +6,52 @@
 // the response. URL bar stays on haptica.ai/p/demo/...; content comes
 // from the wiki Pages project.
 //
-// The wiki is its own self-contained project (preview/dist of
-// bookstack-opcontext-module, deployed via wrangler pages deploy
-// --project-name=1context-demo) so we never need to graft it into the
-// SvelteKit build, sed-rewrite paths, or duplicate assets.
+// HTML responses are streamed through HTMLRewriter to prefix every
+// root-absolute asset path (/assets/foo.js, /agent-ux.html, /agent-ux.md)
+// with /p/demo/ so the browser routes them back through this function
+// instead of hitting haptica.ai's root (which doesn't have those files).
+// We never modify the upstream — the wiki keeps its absolute paths
+// untouched and the rewriting happens at the proxy layer.
+//
+// The wiki itself is its own self-contained Pages project (preview/dist
+// of bookstack-opcontext-module, deployed via wrangler pages deploy
+// --project-name=1context-demo).
 
 const UPSTREAM = 'https://1context-demo.pages.dev';
+const PREFIX = '/p/demo';
+
+// Selectors → attributes whose absolute /-rooted values must be re-rooted
+// under /p/demo so they re-enter this proxy. Covers everything that
+// vite emits + everything the source HTML hand-authors.
+const REWRITE_TARGETS: Array<[string, string]> = [
+  ['a', 'href'],
+  ['link', 'href'],
+  ['script', 'src'],
+  ['img', 'src'],
+  ['source', 'src'],
+  ['video', 'src'],
+  ['audio', 'src'],
+  ['iframe', 'src'],
+  ['form', 'action'],
+];
+
+function maybeRewrite(value: string | null): string | null {
+  if (!value) return value;
+  // protocol-relative (//cdn.com/foo) — leave alone
+  if (value.startsWith('//')) return value;
+  // already prefixed — idempotent
+  if (value.startsWith(PREFIX + '/') || value === PREFIX) return value;
+  // root-absolute — prefix it
+  if (value.startsWith('/')) return PREFIX + value;
+  // relative, hash, mailto:, http(s):// — leave alone
+  return value;
+}
 
 export const onRequest: PagesFunction = async (context) => {
   const inUrl = new URL(context.request.url);
-  // Strip the /p/demo prefix; keep what follows (defaulting to "/").
   const upstreamPath = inUrl.pathname.replace(/^\/p\/demo/, '') || '/';
   const upstreamUrl = UPSTREAM + upstreamPath + inUrl.search;
 
-  // Forward the request method, headers, and body. Drop the Host header
-  // so fetch sets the upstream's Host correctly.
   const init: RequestInit = {
     method: context.request.method,
     headers: new Headers(context.request.headers),
@@ -33,23 +64,44 @@ export const onRequest: PagesFunction = async (context) => {
 
   const upstreamRes = await fetch(upstreamUrl, init);
 
-  // Pages projects sometimes 308 redirect file extensions to clean URLs
-  // (e.g. /agent-ux.html → /agent-ux). Re-anchor the Location header so
-  // the user stays on haptica.ai/p/demo/... rather than getting bounced
-  // to 1context-demo.pages.dev.
+  // Re-anchor any Location header (Pages 308's /agent-ux.html → /agent-ux)
+  // so the user stays under haptica.ai/p/demo/...
   const headers = new Headers(upstreamRes.headers);
   const location = headers.get('location');
   if (location) {
     if (location.startsWith('/')) {
-      headers.set('location', '/p/demo' + location);
+      headers.set('location', PREFIX + location);
     } else if (location.startsWith(UPSTREAM)) {
-      headers.set('location', '/p/demo' + location.slice(UPSTREAM.length));
+      headers.set('location', PREFIX + location.slice(UPSTREAM.length));
     }
   }
 
-  return new Response(upstreamRes.body, {
-    status: upstreamRes.status,
-    statusText: upstreamRes.statusText,
-    headers,
-  });
+  // Only HTML needs path rewriting. Markdown / CSS / JS / images pass through.
+  const contentType = upstreamRes.headers.get('content-type') || '';
+  if (!contentType.includes('text/html')) {
+    return new Response(upstreamRes.body, {
+      status: upstreamRes.status,
+      statusText: upstreamRes.statusText,
+      headers,
+    });
+  }
+
+  // Stream the HTML through HTMLRewriter, prefixing root-absolute URLs.
+  let rewriter = new HTMLRewriter();
+  for (const [selector, attr] of REWRITE_TARGETS) {
+    rewriter = rewriter.on(selector, {
+      element(el) {
+        const next = maybeRewrite(el.getAttribute(attr));
+        if (next !== null) el.setAttribute(attr, next);
+      },
+    });
+  }
+
+  return rewriter.transform(
+    new Response(upstreamRes.body, {
+      status: upstreamRes.status,
+      statusText: upstreamRes.statusText,
+      headers,
+    }),
+  );
 };
